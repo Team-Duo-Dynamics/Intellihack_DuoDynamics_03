@@ -1,0 +1,1006 @@
+question,answer,context
+"What are the two reasoning models introduced by DeepSeek-AI, and how do their training approaches differ?","DeepSeek-AI introduces DeepSeek-R1-Zero and DeepSeek-R1. DeepSeek-R1-Zero is trained primarily through large-scale reinforcement learning (RL) without any supervised fine-tuning (SFT) as a preliminary step. DeepSeek-R1, on the other hand, incorporates multi-stage training and cold-start data before the RL phase to address issues like poor readability and language mixing encountered by DeepSeek-R1-Zero.","DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via
+Reinforcement Learning
+DeepSeek-AI
+research@deepseek.com
+Abstract
+We introduce our first-generation reasoning models, DeepSeek-R1-Zero and DeepSeek-R1.
+DeepSeek-R1-Zero, a model trained via large-scale reinforcement learning (RL) without super-
+vised fine-tuning (SFT) as a preliminary step, demonstrates remarkable reasoning capabilities.
+Through RL, DeepSeek-R1-Zero naturally emerges with numerous powerful and intriguing
+reasoning behaviors. However, it encounters challenges such as poor readability, and language
+mixing. To address these issues and further enhance reasoning performance, we introduce
+DeepSeek-R1, which incorporates multi-stage training and cold-start data before RL. DeepSeek-
+R1 achieves performance comparable to OpenAI-o1-1217 on reasoning tasks. To support the
+research community, we open-source DeepSeek-R1-Zero, DeepSeek-R1, and six dense models
+(1.5B, 7B, 8B, 14B, 32B, 70B) distilled from DeepSeek-R1 based o"
+What are some of the benefits and drawbacks of using reinforcement learning (RL) to train DeepSeek-R1-Zero?,"DeepSeek-R1-Zero, trained via RL, naturally demonstrates remarkable reasoning capabilities and emerges with numerous powerful and intriguing reasoning behaviors. However, it also encounters challenges such as poor readability and language mixing.","DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via
+Reinforcement Learning
+DeepSeek-AI
+research@deepseek.com
+Abstract
+We introduce our first-generation reasoning models, DeepSeek-R1-Zero and DeepSeek-R1.
+DeepSeek-R1-Zero, a model trained via large-scale reinforcement learning (RL) without super-
+vised fine-tuning (SFT) as a preliminary step, demonstrates remarkable reasoning capabilities.
+Through RL, DeepSeek-R1-Zero naturally emerges with numerous powerful and intriguing
+reasoning behaviors. However, it encounters challenges such as poor readability, and language
+mixing. To address these issues and further enhance reasoning performance, we introduce
+DeepSeek-R1, which incorporates multi-stage training and cold-start data before RL. DeepSeek-
+R1 achieves performance comparable to OpenAI-o1-1217 on reasoning tasks. To support the
+research community, we open-source DeepSeek-R1-Zero, DeepSeek-R1, and six dense models
+(1.5B, 7B, 8B, 14B, 32B, 70B) distilled from DeepSeek-R1 based o"
+"What is DeepSeek-AI providing to the research community, and what is the performance of DeepSeek-R1 compared to other models?","DeepSeek-AI is open-sourcing DeepSeek-R1-Zero, DeepSeek-R1, and six dense models (1.5B, 7B, 8B, 14B, 32B, 70B) distilled from DeepSeek-R1 to support the research community. DeepSeek-R1 achieves performance comparable to OpenAI-o1-1217 on reasoning tasks.","DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via
+Reinforcement Learning
+DeepSeek-AI
+research@deepseek.com
+Abstract
+We introduce our first-generation reasoning models, DeepSeek-R1-Zero and DeepSeek-R1.
+DeepSeek-R1-Zero, a model trained via large-scale reinforcement learning (RL) without super-
+vised fine-tuning (SFT) as a preliminary step, demonstrates remarkable reasoning capabilities.
+Through RL, DeepSeek-R1-Zero naturally emerges with numerous powerful and intriguing
+reasoning behaviors. However, it encounters challenges such as poor readability, and language
+mixing. To address these issues and further enhance reasoning performance, we introduce
+DeepSeek-R1, which incorporates multi-stage training and cold-start data before RL. DeepSeek-
+R1 achieves performance comparable to OpenAI-o1-1217 on reasoning tasks. To support the
+research community, we open-source DeepSeek-R1-Zero, DeepSeek-R1, and six dense models
+(1.5B, 7B, 8B, 14B, 32B, 70B) distilled from DeepSeek-R1 based o"
+What is DualPipe and what are its key features?,DualPipe is an innovative bidirectional pipeline parallelism algorithm introduced in the DeepSeek-V3 Technical Report. Its key features include achieving full overlap of forward and backward computation-communication phases and reducing pipeline bubbles.," DualPipe 
+ DualPipe is an innovative bidirectional pipeline parallelism algorithm introduced in the DeepSeek-V3 Technical Report. It achieves full overlap of forward and backward computation-communication phases, also reducing pipeline bubbles. For detailed information on computation-communication overlap, please refer to the profile data. 
+ Pipeline Bubbles and Memory Usage Comparison 
+ | Method    | Bubble                  | Parameter | Activation |
+|:---------:|:-----------------------:|:---------:|:----------:|
+| 1F1B      | (PP-1)(𝐹+𝐵)            | 1×        | PP         |
+| ZB1P      | (PP-1)(𝐹+𝐵-2𝑊)         | 1×        | PP         |
+| DualPipe  | (PP/2-1)(𝐹&amp;𝐵+𝐵-3𝑊)     | 2×        | PP+1       | 
+ 𝐹 denotes the execution time of a forward chunk, 𝐵 denotes the execution time of a full backward chunk, 𝑊 denotes the execution time of a ""backward for weights"" chunk, and 𝐹&amp;𝐵 denotes the execution time of two mutually overlapped forward and backward chunks. 
+ About 
+ A bidir"
+"According to the provided table, how does DualPipe compare to 1F1B and ZB1P in terms of parameter memory usage?","According to the table, DualPipe uses 2x parameter memory, while both 1F1B and ZB1P use 1x parameter memory."," DualPipe 
+ DualPipe is an innovative bidirectional pipeline parallelism algorithm introduced in the DeepSeek-V3 Technical Report. It achieves full overlap of forward and backward computation-communication phases, also reducing pipeline bubbles. For detailed information on computation-communication overlap, please refer to the profile data. 
+ Pipeline Bubbles and Memory Usage Comparison 
+ | Method    | Bubble                  | Parameter | Activation |
+|:---------:|:-----------------------:|:---------:|:----------:|
+| 1F1B      | (PP-1)(𝐹+𝐵)            | 1×        | PP         |
+| ZB1P      | (PP-1)(𝐹+𝐵-2𝑊)         | 1×        | PP         |
+| DualPipe  | (PP/2-1)(𝐹&amp;𝐵+𝐵-3𝑊)     | 2×        | PP+1       | 
+ 𝐹 denotes the execution time of a forward chunk, 𝐵 denotes the execution time of a full backward chunk, 𝑊 denotes the execution time of a ""backward for weights"" chunk, and 𝐹&amp;𝐵 denotes the execution time of two mutually overlapped forward and backward chunks. 
+ About 
+ A bidir"
+"What do the variables 𝐹, 𝐵, and 𝑊 represent in the table comparing pipeline bubbles and memory usage?","In the table, 𝐹 denotes the execution time of a forward chunk, 𝐵 denotes the execution time of a full backward chunk, and 𝑊 denotes the execution time of a ""backward for weights"" chunk. 𝐹&𝐵 denotes the execution time of two mutually overlapped forward and backward chunks."," DualPipe 
+ DualPipe is an innovative bidirectional pipeline parallelism algorithm introduced in the DeepSeek-V3 Technical Report. It achieves full overlap of forward and backward computation-communication phases, also reducing pipeline bubbles. For detailed information on computation-communication overlap, please refer to the profile data. 
+ Pipeline Bubbles and Memory Usage Comparison 
+ | Method    | Bubble                  | Parameter | Activation |
+|:---------:|:-----------------------:|:---------:|:----------:|
+| 1F1B      | (PP-1)(𝐹+𝐵)            | 1×        | PP         |
+| ZB1P      | (PP-1)(𝐹+𝐵-2𝑊)         | 1×        | PP         |
+| DualPipe  | (PP/2-1)(𝐹&amp;𝐵+𝐵-3𝑊)     | 2×        | PP+1       | 
+ 𝐹 denotes the execution time of a forward chunk, 𝐵 denotes the execution time of a full backward chunk, 𝑊 denotes the execution time of a ""backward for weights"" chunk, and 𝐹&amp;𝐵 denotes the execution time of two mutually overlapped forward and backward chunks. 
+ About 
+ A bidir"
+What is DualPipe and who created it?,"DualPipe is a bidirectional pipeline parallelism algorithm for computation-communication overlap in V3/R1 training. It was created and developed by Jiashi Li, Chengqi Deng, and Wenfeng Liang."," a full backward chunk, 𝑊 denotes the execution time of a ""backward for weights"" chunk, and 𝐹&amp;𝐵 denotes the execution time of two mutually overlapped forward and backward chunks. 
+ About 
+ A bidirectional pipeline parallelism algorithm for computation-communication overlap in V3/R1 training 
+  DualPipe was created and developed by Jiashi Li and Chengqi Deng and Wenfeng Liang.  
+ Profiling Data in DeepSeek Infra 
+ Here, we publicly share profiling data from our training and inference framework to help the community better understand the communication-computation overlap strategies and low-level implementation details. The profiling data was captured using the PyTorch Profiler. After downloading, you can visualize it directly by navigating to chrome://tracing in the Chrome browser (or edge://tracing in the Edge browser). Notice that we simulate an absolutely balanced MoE routing strategy for profiling. 
+ Training 
+ The training profile data demonstrates our overlapping strategy for a"
+"What kind of profiling data is being shared, and how can it be visualized?",The profiling data being shared is from the creators' training and inference framework. It's meant to help the community understand communication-computation overlap strategies and low-level implementation details. The data was captured using the PyTorch Profiler and can be visualized by navigating to chrome://tracing in the Chrome browser (or edge://tracing in the Edge browser).," a full backward chunk, 𝑊 denotes the execution time of a ""backward for weights"" chunk, and 𝐹&amp;𝐵 denotes the execution time of two mutually overlapped forward and backward chunks. 
+ About 
+ A bidirectional pipeline parallelism algorithm for computation-communication overlap in V3/R1 training 
+  DualPipe was created and developed by Jiashi Li and Chengqi Deng and Wenfeng Liang.  
+ Profiling Data in DeepSeek Infra 
+ Here, we publicly share profiling data from our training and inference framework to help the community better understand the communication-computation overlap strategies and low-level implementation details. The profiling data was captured using the PyTorch Profiler. After downloading, you can visualize it directly by navigating to chrome://tracing in the Chrome browser (or edge://tracing in the Edge browser). Notice that we simulate an absolutely balanced MoE routing strategy for profiling. 
+ Training 
+ The training profile data demonstrates our overlapping strategy for a"
+What does the training profile data demonstrate?,The training profile data demonstrates the overlapping strategy used in training.," a full backward chunk, 𝑊 denotes the execution time of a ""backward for weights"" chunk, and 𝐹&amp;𝐵 denotes the execution time of two mutually overlapped forward and backward chunks. 
+ About 
+ A bidirectional pipeline parallelism algorithm for computation-communication overlap in V3/R1 training 
+  DualPipe was created and developed by Jiashi Li and Chengqi Deng and Wenfeng Liang.  
+ Profiling Data in DeepSeek Infra 
+ Here, we publicly share profiling data from our training and inference framework to help the community better understand the communication-computation overlap strategies and low-level implementation details. The profiling data was captured using the PyTorch Profiler. After downloading, you can visualize it directly by navigating to chrome://tracing in the Chrome browser (or edge://tracing in the Edge browser). Notice that we simulate an absolutely balanced MoE routing strategy for profiling. 
+ Training 
+ The training profile data demonstrates our overlapping strategy for a"
+"What training configuration was used for profiling, and what simplification was made during profiling?","The training profile data demonstrates an overlapping strategy for a pair of individual forward and backward chunks in DualPipe, where each chunk contains 4 MoE (Mixture of Experts) layers. The parallel configuration aligns with DeepSeek-V3 pretraining settings, using EP64 and TP1 with a 4K sequence length. For simplicity, PP communication was not included during profiling.","ge://tracing in the Edge browser). Notice that we simulate an absolutely balanced MoE routing strategy for profiling. 
+ Training 
+ The training profile data demonstrates our overlapping strategy for a pair of individual forward and backward chunks in DualPipe. Each chunk contains 4 MoE (Mixture of Experts) layers. The parallel configuration aligns with DeepSeek-V3 pretraining settings: EP64, TP1 with 4K sequence length. And the PP communication is not included during profilng for simplicity. 
+ Inference 
+ Prefilling 
+ For prefilling, the profile employs EP32 and TP1 (in line with DeepSeek V3/R1 ’s actual online deployment), with a prompt length set to 4K and a batch size of 16K tokens per GPU. In our prefilling stage, we utilize two micro-batches to overlap computation and all-to-all communication, while ensuring that the attention computation load is balanced across the two micro-batches — meaning that the same prompt may be split between them. 
+ Decoding 
+ For decoding, the profile e"
+"What EP and TP settings were used for prefilling during inference profiling, and what parameters were set for prompt length and batch size?","For prefilling during inference profiling, EP32 and TP1 were used, in line with DeepSeek V3/R1’s actual online deployment. The prompt length was set to 4K, and the batch size was 16K tokens per GPU.","ge://tracing in the Edge browser). Notice that we simulate an absolutely balanced MoE routing strategy for profiling. 
+ Training 
+ The training profile data demonstrates our overlapping strategy for a pair of individual forward and backward chunks in DualPipe. Each chunk contains 4 MoE (Mixture of Experts) layers. The parallel configuration aligns with DeepSeek-V3 pretraining settings: EP64, TP1 with 4K sequence length. And the PP communication is not included during profilng for simplicity. 
+ Inference 
+ Prefilling 
+ For prefilling, the profile employs EP32 and TP1 (in line with DeepSeek V3/R1 ’s actual online deployment), with a prompt length set to 4K and a batch size of 16K tokens per GPU. In our prefilling stage, we utilize two micro-batches to overlap computation and all-to-all communication, while ensuring that the attention computation load is balanced across the two micro-batches — meaning that the same prompt may be split between them. 
+ Decoding 
+ For decoding, the profile e"
+"What strategy is utilized in the prefilling stage regarding computation and communication, and how is the attention computation load managed?","In the prefilling stage, two micro-batches are used to overlap computation and all-to-all communication. The attention computation load is balanced across the two micro-batches, meaning that the same prompt may be split between them.","ge://tracing in the Edge browser). Notice that we simulate an absolutely balanced MoE routing strategy for profiling. 
+ Training 
+ The training profile data demonstrates our overlapping strategy for a pair of individual forward and backward chunks in DualPipe. Each chunk contains 4 MoE (Mixture of Experts) layers. The parallel configuration aligns with DeepSeek-V3 pretraining settings: EP64, TP1 with 4K sequence length. And the PP communication is not included during profilng for simplicity. 
+ Inference 
+ Prefilling 
+ For prefilling, the profile employs EP32 and TP1 (in line with DeepSeek V3/R1 ’s actual online deployment), with a prompt length set to 4K and a batch size of 16K tokens per GPU. In our prefilling stage, we utilize two micro-batches to overlap computation and all-to-all communication, while ensuring that the attention computation load is balanced across the two micro-batches — meaning that the same prompt may be split between them. 
+ Decoding 
+ For decoding, the profile e"
+"What are the decoding profile parameters used, and what is the batch size per GPU?","The decoding profile employs EP128, TP1, and a prompt length of 4K. The batch size is 128 requests per GPU.","nication, while ensuring that the attention computation load is balanced across the two micro-batches — meaning that the same prompt may be split between them. 
+ Decoding 
+ For decoding, the profile employs EP128, TP1, and a prompt length of 4K (closely matching the actual online deployment configuration), with a batch size of 128 requests per GPU. Similar to prefilling, decoding also leverages two micro-batches for overlapping computation and all-to-all communication. However, unlike in prefilling, the all-to-all communication during decoding does not occupy GPU SMs: after RDMA messages are issued, all GPU SMs are freed, and the system waits for the all-to-all communication to complete after the computation has finished. For more information about the all-to-all implementation, please refer to DeepEP. 
+ Expert Parallelism Load Balancer (EPLB) 
+ When using expert parallelism (EP), different experts are assigned to different GPUs. Because the load of different experts may vary depending"
+"How is all-to-all communication handled during decoding, and how does it differ from prefilling?","During decoding, all-to-all communication also leverages two micro-batches for overlapping computation and communication, similar to prefilling. However, unlike prefilling, the all-to-all communication during decoding does not occupy GPU SMs. After RDMA messages are issued, all GPU SMs are freed, and the system waits for the all-to-all communication to complete after the computation has finished. For more information about the all-to-all implementation, one should refer to DeepEP.","nication, while ensuring that the attention computation load is balanced across the two micro-batches — meaning that the same prompt may be split between them. 
+ Decoding 
+ For decoding, the profile employs EP128, TP1, and a prompt length of 4K (closely matching the actual online deployment configuration), with a batch size of 128 requests per GPU. Similar to prefilling, decoding also leverages two micro-batches for overlapping computation and all-to-all communication. However, unlike in prefilling, the all-to-all communication during decoding does not occupy GPU SMs: after RDMA messages are issued, all GPU SMs are freed, and the system waits for the all-to-all communication to complete after the computation has finished. For more information about the all-to-all implementation, please refer to DeepEP. 
+ Expert Parallelism Load Balancer (EPLB) 
+ When using expert parallelism (EP), different experts are assigned to different GPUs. Because the load of different experts may vary depending"
+"What is Expert Parallelism (EP), and how are experts assigned in this context?",Expert Parallelism (EP) is a method where different experts are assigned to different GPUs.,"nication, while ensuring that the attention computation load is balanced across the two micro-batches — meaning that the same prompt may be split between them. 
+ Decoding 
+ For decoding, the profile employs EP128, TP1, and a prompt length of 4K (closely matching the actual online deployment configuration), with a batch size of 128 requests per GPU. Similar to prefilling, decoding also leverages two micro-batches for overlapping computation and all-to-all communication. However, unlike in prefilling, the all-to-all communication during decoding does not occupy GPU SMs: after RDMA messages are issued, all GPU SMs are freed, and the system waits for the all-to-all communication to complete after the computation has finished. For more information about the all-to-all implementation, please refer to DeepEP. 
+ Expert Parallelism Load Balancer (EPLB) 
+ When using expert parallelism (EP), different experts are assigned to different GPUs. Because the load of different experts may vary depending"
+What is the purpose of the Expert Parallelism Load Balancer (EPLB)?,The Expert Parallelism Load Balancer (EPLB) aims to keep the load of different GPUs balanced when using expert parallelism (EP). This is important because the load of different experts may vary depending on the current workload.,"er to DeepEP. 
+ Expert Parallelism Load Balancer (EPLB) 
+ When using expert parallelism (EP), different experts are assigned to different GPUs. Because the load of different experts may vary depending on the current workload, it is important to keep the load of different GPUs balanced. As described in the DeepSeek-V3 paper, we adopt a redundant experts strategy that duplicates heavy-loaded experts. Then, we heuristically pack the duplicated experts to GPUs to ensure load balancing across different GPUs. Moreover, thanks to the group-limited expert routing used in DeepSeek-V3, we also attempt to place the experts of the same group to the same node to reduce inter-node data traffic, whenever possible. 
+ To facilitate reproduction and deployment, we open-source our deployed EP load balancing algorithm in eplb.py. The algorithm computes a balanced expert replication and placement plan based on the estimated expert loads. Note that the exact method to predict the loads of experts is out of "
+What strategy is used to balance the load across different GPUs in EPLB?,The EPLB adopts a redundant experts strategy that duplicates heavily-loaded experts. These duplicated experts are then heuristically packed onto GPUs to ensure load balancing across different GPUs.,"er to DeepEP. 
+ Expert Parallelism Load Balancer (EPLB) 
+ When using expert parallelism (EP), different experts are assigned to different GPUs. Because the load of different experts may vary depending on the current workload, it is important to keep the load of different GPUs balanced. As described in the DeepSeek-V3 paper, we adopt a redundant experts strategy that duplicates heavy-loaded experts. Then, we heuristically pack the duplicated experts to GPUs to ensure load balancing across different GPUs. Moreover, thanks to the group-limited expert routing used in DeepSeek-V3, we also attempt to place the experts of the same group to the same node to reduce inter-node data traffic, whenever possible. 
+ To facilitate reproduction and deployment, we open-source our deployed EP load balancing algorithm in eplb.py. The algorithm computes a balanced expert replication and placement plan based on the estimated expert loads. Note that the exact method to predict the loads of experts is out of "
+"Besides load balancing, what other optimization does the EP load balancing algorithm consider?","In addition to load balancing, the algorithm attempts to place the experts of the same group to the same node whenever possible. This is done to reduce inter-node data traffic, taking advantage of the group-limited expert routing used in DeepSeek-V3.","er to DeepEP. 
+ Expert Parallelism Load Balancer (EPLB) 
+ When using expert parallelism (EP), different experts are assigned to different GPUs. Because the load of different experts may vary depending on the current workload, it is important to keep the load of different GPUs balanced. As described in the DeepSeek-V3 paper, we adopt a redundant experts strategy that duplicates heavy-loaded experts. Then, we heuristically pack the duplicated experts to GPUs to ensure load balancing across different GPUs. Moreover, thanks to the group-limited expert routing used in DeepSeek-V3, we also attempt to place the experts of the same group to the same node to reduce inter-node data traffic, whenever possible. 
+ To facilitate reproduction and deployment, we open-source our deployed EP load balancing algorithm in eplb.py. The algorithm computes a balanced expert replication and placement plan based on the estimated expert loads. Note that the exact method to predict the loads of experts is out of "
+What is the purpose of the algorithm implemented in eplb.py?,The algorithm in eplb.py computes a balanced expert replication and placement plan based on the estimated expert loads. It aims to distribute experts across server nodes and GPUs in a way that balances the load.,"algorithm in eplb.py. The algorithm computes a balanced expert replication and placement plan based on the estimated expert loads. Note that the exact method to predict the loads of experts is out of this repo's scope. A common method is to use moving average of historical statistics. 
+ The Algorithm 
+ The load balancing algorithm comes with two policies used for different cases. 
+ Hierarchical Load Balancing 
+ When the number of server nodes divides the number of expert groups, we use the hierarchical load balancing policy to harness the group-limited expert routing. We first pack the expert groups to nodes evenly, ensuring the loads of different nodes are balanced. Then, we replicate the experts within each node. Finally, we pack the replicated experts to individual GPUs to ensure different GPUs are load-balanced. The hierarchical load balancing policy can be used in prefilling stage with a smaller expert-parallel size. 
+ Global Load Balancing 
+ In other cases, we use the global load"
+What are the two load balancing policies used by the algorithm and when are they applied?,The algorithm uses two load balancing policies: Hierarchical Load Balancing and Global Load Balancing. Hierarchical Load Balancing is used when the number of server nodes divides the number of expert groups. Global Load Balancing is used in all other cases.,"algorithm in eplb.py. The algorithm computes a balanced expert replication and placement plan based on the estimated expert loads. Note that the exact method to predict the loads of experts is out of this repo's scope. A common method is to use moving average of historical statistics. 
+ The Algorithm 
+ The load balancing algorithm comes with two policies used for different cases. 
+ Hierarchical Load Balancing 
+ When the number of server nodes divides the number of expert groups, we use the hierarchical load balancing policy to harness the group-limited expert routing. We first pack the expert groups to nodes evenly, ensuring the loads of different nodes are balanced. Then, we replicate the experts within each node. Finally, we pack the replicated experts to individual GPUs to ensure different GPUs are load-balanced. The hierarchical load balancing policy can be used in prefilling stage with a smaller expert-parallel size. 
+ Global Load Balancing 
+ In other cases, we use the global load"
+Describe the steps involved in the Hierarchical Load Balancing policy.,"The Hierarchical Load Balancing policy consists of the following steps: first, the expert groups are packed to nodes evenly, ensuring the loads of different nodes are balanced. Then, the experts are replicated within each node. Finally, the replicated experts are packed to individual GPUs to ensure different GPUs are load-balanced.","algorithm in eplb.py. The algorithm computes a balanced expert replication and placement plan based on the estimated expert loads. Note that the exact method to predict the loads of experts is out of this repo's scope. A common method is to use moving average of historical statistics. 
+ The Algorithm 
+ The load balancing algorithm comes with two policies used for different cases. 
+ Hierarchical Load Balancing 
+ When the number of server nodes divides the number of expert groups, we use the hierarchical load balancing policy to harness the group-limited expert routing. We first pack the expert groups to nodes evenly, ensuring the loads of different nodes are balanced. Then, we replicate the experts within each node. Finally, we pack the replicated experts to individual GPUs to ensure different GPUs are load-balanced. The hierarchical load balancing policy can be used in prefilling stage with a smaller expert-parallel size. 
+ Global Load Balancing 
+ In other cases, we use the global load"
+"What are the characteristics of the global load balancing policy, and when is it typically used?","The global load balancing policy replicates experts globally, regardless of expert groups, and packs the replicated experts to individual GPUs. This policy is typically adopted during the decoding stage and is suitable for scenarios with a larger expert-parallel size.","ent GPUs are load-balanced. The hierarchical load balancing policy can be used in prefilling stage with a smaller expert-parallel size. 
+ Global Load Balancing 
+ In other cases, we use the global load balancing policy that replicates the experts globally regardless of expert groups, and pack the replicated experts to individual GPUs. This policy can be adopted in decoding stage with a larger expert-parallel size. 
+ Fire-Flyer File system 
+ The Fire-Flyer File System (3FS) is a high-performance distributed file system designed to address the challenges of AI training and inference workloads. It leverages modern SSDs and RDMA networks to provide a shared storage layer that simplifies development of distributed applications. Key features and benefits of 3FS include: 
+ 
+ 
+ Performance and Usability 
+ 
+ Disaggregated Architecture Combines the throughput of thousands of SSDs and the network bandwidth of hundreds of storage nodes, enabling applications to access storage resource in a locality"
+"What is the Fire-Flyer File System (3FS) designed for, and what technologies does it utilize?",The Fire-Flyer File System (3FS) is a high-performance distributed file system designed to address the challenges of AI training and inference workloads. It leverages modern SSDs and RDMA networks to provide a shared storage layer that simplifies the development of distributed applications.,"ent GPUs are load-balanced. The hierarchical load balancing policy can be used in prefilling stage with a smaller expert-parallel size. 
+ Global Load Balancing 
+ In other cases, we use the global load balancing policy that replicates the experts globally regardless of expert groups, and pack the replicated experts to individual GPUs. This policy can be adopted in decoding stage with a larger expert-parallel size. 
+ Fire-Flyer File system 
+ The Fire-Flyer File System (3FS) is a high-performance distributed file system designed to address the challenges of AI training and inference workloads. It leverages modern SSDs and RDMA networks to provide a shared storage layer that simplifies development of distributed applications. Key features and benefits of 3FS include: 
+ 
+ 
+ Performance and Usability 
+ 
+ Disaggregated Architecture Combines the throughput of thousands of SSDs and the network bandwidth of hundreds of storage nodes, enabling applications to access storage resource in a locality"
+What are the key benefits of the Fire-Flyer File System's disaggregated architecture?,"The disaggregated architecture of the Fire-Flyer File System combines the throughput of thousands of SSDs and the network bandwidth of hundreds of storage nodes, allowing applications to access storage resources in a locality-aware manner.","ent GPUs are load-balanced. The hierarchical load balancing policy can be used in prefilling stage with a smaller expert-parallel size. 
+ Global Load Balancing 
+ In other cases, we use the global load balancing policy that replicates the experts globally regardless of expert groups, and pack the replicated experts to individual GPUs. This policy can be adopted in decoding stage with a larger expert-parallel size. 
+ Fire-Flyer File system 
+ The Fire-Flyer File System (3FS) is a high-performance distributed file system designed to address the challenges of AI training and inference workloads. It leverages modern SSDs and RDMA networks to provide a shared storage layer that simplifies development of distributed applications. Key features and benefits of 3FS include: 
+ 
+ 
+ Performance and Usability 
+ 
+ Disaggregated Architecture Combines the throughput of thousands of SSDs and the network bandwidth of hundreds of storage nodes, enabling applications to access storage resource in a locality"
+What are the key features of the disaggregated architecture described in the text?,"The disaggregated architecture combines the throughput of thousands of SSDs and the network bandwidth of hundreds of storage nodes. This enables applications to access storage resources in a locality-oblivious manner, meaning the physical location of the data is irrelevant to the application's access.","ility 
+ 
+ Disaggregated Architecture Combines the throughput of thousands of SSDs and the network bandwidth of hundreds of storage nodes, enabling applications to access storage resource in a locality-oblivious manner. 
+ Strong Consistency Implements Chain Replication with Apportioned Queries (CRAQ) for strong consistency, making application code simple and easy to reason about. 
+ File Interfaces Develops stateless metadata services backed by a transactional key-value store (e.g., FoundationDB). The file interface is well known and used everywhere. There is no need to learn a new storage API. 
+ 
+ 
+ 
+ Diverse Workloads 
+ 
+ Data Preparation Organizes outputs of data analytics pipelines into hierarchical directory structures and manages a large volume of intermediate outputs efficiently. 
+ Dataloaders Eliminates the need for prefetching or shuffling datasets by enabling random access to training samples across compute nodes. 
+ Checkpointing Supports high-throughput parallel checkpointing "
+"How does the system ensure strong consistency, and what benefit does this provide?",The system implements Chain Replication with Apportioned Queries (CRAQ) to ensure strong consistency. This simplifies application code and makes it easier to reason about because developers can rely on the data being consistent across all replicas.,"ility 
+ 
+ Disaggregated Architecture Combines the throughput of thousands of SSDs and the network bandwidth of hundreds of storage nodes, enabling applications to access storage resource in a locality-oblivious manner. 
+ Strong Consistency Implements Chain Replication with Apportioned Queries (CRAQ) for strong consistency, making application code simple and easy to reason about. 
+ File Interfaces Develops stateless metadata services backed by a transactional key-value store (e.g., FoundationDB). The file interface is well known and used everywhere. There is no need to learn a new storage API. 
+ 
+ 
+ 
+ Diverse Workloads 
+ 
+ Data Preparation Organizes outputs of data analytics pipelines into hierarchical directory structures and manages a large volume of intermediate outputs efficiently. 
+ Dataloaders Eliminates the need for prefetching or shuffling datasets by enabling random access to training samples across compute nodes. 
+ Checkpointing Supports high-throughput parallel checkpointing "
+"What type of file interface is used, and why was this choice made?",The system uses a well-known file interface. The metadata services are stateless and backed by a transactional key-value store like FoundationDB. This design choice eliminates the need for users to learn a new storage API because the file interface is already widely understood and used.,"ility 
+ 
+ Disaggregated Architecture Combines the throughput of thousands of SSDs and the network bandwidth of hundreds of storage nodes, enabling applications to access storage resource in a locality-oblivious manner. 
+ Strong Consistency Implements Chain Replication with Apportioned Queries (CRAQ) for strong consistency, making application code simple and easy to reason about. 
+ File Interfaces Develops stateless metadata services backed by a transactional key-value store (e.g., FoundationDB). The file interface is well known and used everywhere. There is no need to learn a new storage API. 
+ 
+ 
+ 
+ Diverse Workloads 
+ 
+ Data Preparation Organizes outputs of data analytics pipelines into hierarchical directory structures and manages a large volume of intermediate outputs efficiently. 
+ Dataloaders Eliminates the need for prefetching or shuffling datasets by enabling random access to training samples across compute nodes. 
+ Checkpointing Supports high-throughput parallel checkpointing "
+What benefits does taloaders provide?,Taloaders eliminates the need for prefetching or shuffling datasets by enabling random access to training samples across compute nodes.,"taloaders Eliminates the need for prefetching or shuffling datasets by enabling random access to training samples across compute nodes. 
+ Checkpointing Supports high-throughput parallel checkpointing for large-scale training. 
+ KVCache for Inference Provides a cost-effective alternative to DRAM-based caching, offering high throughput and significantly larger capacity. 
+ 
+ 
+ 
+ Performance 
+ 
+ Peak throughput 
+ 
+ The following figure demonstrates the throughput of read stress test on a large 3FS cluster. This cluster consists of 180 storage nodes, each equipped with 2×200Gbps InfiniBand NICs and sixteen 14TiB NVMe SSDs. Approximately 500+ client nodes were used for the read stress test, with each client node configured with 1x200Gbps InfiniBand NIC. The final aggregate read throughput reached approximately 6.6 TiB/s with background traffic from training jobs. 
+ 
+ GraySort 
+ 
+ We evaluated smallpond using the GraySort benchmark, which measures sort performance on large-scale datasets. Our"
+What are the key features mentioned in the text?,"The key features mentioned are taloaders, checkpointing, and KVCache for Inference. Taloaders eliminates the need for prefetching or shuffling datasets by enabling random access to training samples. Checkpointing supports high-throughput parallel checkpointing for large-scale training. KVCache for Inference provides a cost-effective alternative to DRAM-based caching, offering high throughput and significantly larger capacity.","taloaders Eliminates the need for prefetching or shuffling datasets by enabling random access to training samples across compute nodes. 
+ Checkpointing Supports high-throughput parallel checkpointing for large-scale training. 
+ KVCache for Inference Provides a cost-effective alternative to DRAM-based caching, offering high throughput and significantly larger capacity. 
+ 
+ 
+ 
+ Performance 
+ 
+ Peak throughput 
+ 
+ The following figure demonstrates the throughput of read stress test on a large 3FS cluster. This cluster consists of 180 storage nodes, each equipped with 2×200Gbps InfiniBand NICs and sixteen 14TiB NVMe SSDs. Approximately 500+ client nodes were used for the read stress test, with each client node configured with 1x200Gbps InfiniBand NIC. The final aggregate read throughput reached approximately 6.6 TiB/s with background traffic from training jobs. 
+ 
+ GraySort 
+ 
+ We evaluated smallpond using the GraySort benchmark, which measures sort performance on large-scale datasets. Our"
+"What was the aggregate read throughput achieved during the read stress test, and what was the configuration of the cluster used for the test?","The aggregate read throughput reached approximately 6.6 TiB/s with background traffic from training jobs. The cluster consisted of 180 storage nodes, each equipped with 2×200Gbps InfiniBand NICs and sixteen 14TiB NVMe SSDs. Approximately 500+ client nodes were used, with each client node configured with 1x200Gbps InfiniBand NIC.","taloaders Eliminates the need for prefetching or shuffling datasets by enabling random access to training samples across compute nodes. 
+ Checkpointing Supports high-throughput parallel checkpointing for large-scale training. 
+ KVCache for Inference Provides a cost-effective alternative to DRAM-based caching, offering high throughput and significantly larger capacity. 
+ 
+ 
+ 
+ Performance 
+ 
+ Peak throughput 
+ 
+ The following figure demonstrates the throughput of read stress test on a large 3FS cluster. This cluster consists of 180 storage nodes, each equipped with 2×200Gbps InfiniBand NICs and sixteen 14TiB NVMe SSDs. Approximately 500+ client nodes were used for the read stress test, with each client node configured with 1x200Gbps InfiniBand NIC. The final aggregate read throughput reached approximately 6.6 TiB/s with background traffic from training jobs. 
+ 
+ GraySort 
+ 
+ We evaluated smallpond using the GraySort benchmark, which measures sort performance on large-scale datasets. Our"
+"What is the GraySort benchmark used for, and what approach does the described implementation take?","The GraySort benchmark is used to measure sort performance on large-scale datasets. The implementation described adopts a two-phase approach consisting of: (1) partitioning data via shuffle using the prefix bits of keys, and (2) in-partition sorting. Both phases read/write data from/to 3FS.","d approximately 6.6 TiB/s with background traffic from training jobs. 
+ 
+ GraySort 
+ 
+ We evaluated smallpond using the GraySort benchmark, which measures sort performance on large-scale datasets. Our implementation adopts a two-phase approach: (1) partitioning data via shuffle using the prefix bits of keys, and (2) in-partition sorting. Both phases read/write data from/to 3FS. 
+ The test cluster comprised 25 storage nodes (2 NUMA domains/node, 1 storage service/NUMA, 2×400Gbps NICs/node) and 50 compute nodes (2 NUMA domains, 192 physical cores, 2.2 TiB RAM, and 1×200 Gbps NIC/node). Sorting 110.5 TiB of data across 8,192 partitions completed in 30 minutes and 14 seconds, achieving an average throughput of 3.66 TiB/min. 
+ 
+ KVCache 
+ 
+ KVCache is a technique used to optimize the LLM inference process. It avoids redundant computations by caching the key and value vectors of previous tokens in the decoder layers. The top figure demonstrates the read throughput of all KVCache clients, hig"
+What was the hardware configuration of the test cluster used for the GraySort evaluation?,"The test cluster was comprised of 25 storage nodes, each with 2 NUMA domains, 1 storage service per NUMA domain, and 2×400Gbps NICs per node. It also included 50 compute nodes, each with 2 NUMA domains, 192 physical cores, 2.2 TiB of RAM, and 1×200 Gbps NIC per node.","d approximately 6.6 TiB/s with background traffic from training jobs. 
+ 
+ GraySort 
+ 
+ We evaluated smallpond using the GraySort benchmark, which measures sort performance on large-scale datasets. Our implementation adopts a two-phase approach: (1) partitioning data via shuffle using the prefix bits of keys, and (2) in-partition sorting. Both phases read/write data from/to 3FS. 
+ The test cluster comprised 25 storage nodes (2 NUMA domains/node, 1 storage service/NUMA, 2×400Gbps NICs/node) and 50 compute nodes (2 NUMA domains, 192 physical cores, 2.2 TiB RAM, and 1×200 Gbps NIC/node). Sorting 110.5 TiB of data across 8,192 partitions completed in 30 minutes and 14 seconds, achieving an average throughput of 3.66 TiB/min. 
+ 
+ KVCache 
+ 
+ KVCache is a technique used to optimize the LLM inference process. It avoids redundant computations by caching the key and value vectors of previous tokens in the decoder layers. The top figure demonstrates the read throughput of all KVCache clients, hig"
+"How long did it take to sort 110.5 TiB of data using the GraySort benchmark, and what was the average throughput?","Sorting 110.5 TiB of data across 8,192 partitions completed in 30 minutes and 14 seconds, achieving an average throughput of 3.66 TiB/min.","d approximately 6.6 TiB/s with background traffic from training jobs. 
+ 
+ GraySort 
+ 
+ We evaluated smallpond using the GraySort benchmark, which measures sort performance on large-scale datasets. Our implementation adopts a two-phase approach: (1) partitioning data via shuffle using the prefix bits of keys, and (2) in-partition sorting. Both phases read/write data from/to 3FS. 
+ The test cluster comprised 25 storage nodes (2 NUMA domains/node, 1 storage service/NUMA, 2×400Gbps NICs/node) and 50 compute nodes (2 NUMA domains, 192 physical cores, 2.2 TiB RAM, and 1×200 Gbps NIC/node). Sorting 110.5 TiB of data across 8,192 partitions completed in 30 minutes and 14 seconds, achieving an average throughput of 3.66 TiB/min. 
+ 
+ KVCache 
+ 
+ KVCache is a technique used to optimize the LLM inference process. It avoids redundant computations by caching the key and value vectors of previous tokens in the decoder layers. The top figure demonstrates the read throughput of all KVCache clients, hig"
+How does KVCache improve the decoding process?,KVCache improves the decoding process by caching the key and value vectors of previous tokens in the decoder layers. This helps avoid redundant computations.,"nce process. It avoids redundant computations by caching the key and value vectors of previous tokens in the decoder layers. The top figure demonstrates the read throughput of all KVCache clients, highlighting both peak and average values, with peak throughput reaching up to 40 GiB/s. The bottom figure presents the IOPS of removing ops from garbage collection (GC) during the same time period. "
+What is the peak read throughput of KVCache clients as mentioned in the text?,The text mentions that the peak read throughput of all KVCache clients reached up to 40 GiB/s.,"nce process. It avoids redundant computations by caching the key and value vectors of previous tokens in the decoder layers. The top figure demonstrates the read throughput of all KVCache clients, highlighting both peak and average values, with peak throughput reaching up to 40 GiB/s. The bottom figure presents the IOPS of removing ops from garbage collection (GC) during the same time period. "
+What data does the bottom figure present?,"The bottom figure presents the IOPS of removing ops from garbage collection (GC) during the same time period as the top figure, which showcases the read throughput of all KVCache clients.","nce process. It avoids redundant computations by caching the key and value vectors of previous tokens in the decoder layers. The top figure demonstrates the read throughput of all KVCache clients, highlighting both peak and average values, with peak throughput reaching up to 40 GiB/s. The bottom figure presents the IOPS of removing ops from garbage collection (GC) during the same time period. "
+"What is the significance of Deepseek in the AI industry, according to the author?","According to the author, Deepseek's significance as a disruptor in the AI industry lies in its approach of improving algorithms at the software level, rather than focusing on hardware improvements like other companies. This allows Deepseek to achieve better results with a fraction of the training and inference cost compared to its competitors.","   
+ author - Visith Kumarapperuma 
+ Deepseek V3: A Game-Changer in A.I. Here’s Why It Matters 
+ Currently, the AI models from the Chinese startup Deepseek are causing quite a stir in the AI space. Their latest reasoning model, Deepseek r1, shows better or equal performance to competitors. But above all, they achieved it with a fraction of the training and inference cost.
+DeepSeek’s AI Assistant overtook ChatGPT to become the most downloaded free app on the U.S. App Store. This development has led to market concerns about A.I. investments to major U.S. tech companies. Impacting share prices of tech firms including Nvidia. 
+ So what made Deepseek such a big impact to A.I. ? 
+ The significance of Deepseek as a disruptor in the industry lies in its approach. Unlike other companies that pushed for better hardware, Deepseek improved the algorithms. Thus achieving better results at a software level.
+Note that the following details are for the Deepseek V3 model.
+• Deepseek said it trained a m"
+What impact has Deepseek's AI Assistant had on the U.S. App Store and the AI investment market?,"Deepseek's AI Assistant surpassed ChatGPT to become the most downloaded free app on the U.S. App Store. This development has led to market concerns about AI investments in major U.S. tech companies, impacting the share prices of tech firms, including Nvidia.","   
+ author - Visith Kumarapperuma 
+ Deepseek V3: A Game-Changer in A.I. Here’s Why It Matters 
+ Currently, the AI models from the Chinese startup Deepseek are causing quite a stir in the AI space. Their latest reasoning model, Deepseek r1, shows better or equal performance to competitors. But above all, they achieved it with a fraction of the training and inference cost.
+DeepSeek’s AI Assistant overtook ChatGPT to become the most downloaded free app on the U.S. App Store. This development has led to market concerns about A.I. investments to major U.S. tech companies. Impacting share prices of tech firms including Nvidia. 
+ So what made Deepseek such a big impact to A.I. ? 
+ The significance of Deepseek as a disruptor in the industry lies in its approach. Unlike other companies that pushed for better hardware, Deepseek improved the algorithms. Thus achieving better results at a software level.
+Note that the following details are for the Deepseek V3 model.
+• Deepseek said it trained a m"
+What is the Deepseek r1 model and how does it compare to its competitors?,"Deepseek r1 is Deepseek's latest reasoning model. According to the author, it demonstrates performance that is either better than or equal to its competitors. Notably, it achieves this performance with a fraction of the training and inference cost.","   
+ author - Visith Kumarapperuma 
+ Deepseek V3: A Game-Changer in A.I. Here’s Why It Matters 
+ Currently, the AI models from the Chinese startup Deepseek are causing quite a stir in the AI space. Their latest reasoning model, Deepseek r1, shows better or equal performance to competitors. But above all, they achieved it with a fraction of the training and inference cost.
+DeepSeek’s AI Assistant overtook ChatGPT to become the most downloaded free app on the U.S. App Store. This development has led to market concerns about A.I. investments to major U.S. tech companies. Impacting share prices of tech firms including Nvidia. 
+ So what made Deepseek such a big impact to A.I. ? 
+ The significance of Deepseek as a disruptor in the industry lies in its approach. Unlike other companies that pushed for better hardware, Deepseek improved the algorithms. Thus achieving better results at a software level.
+Note that the following details are for the Deepseek V3 model.
+• Deepseek said it trained a m"
+"What hardware did Deepseek use to train their V3 model, and approximately how long did the final training run take?","Deepseek used a data center with approximately 2,000 Nvidia H800 GPUs to train their V3 model. The final training run lasted approximately 2 months."," for better hardware, Deepseek improved the algorithms. Thus achieving better results at a software level.
+Note that the following details are for the Deepseek V3 model.
+• Deepseek said it trained a model using a data centre of some 2,000 of Nvidia H800 GPUs.
+• Time duration 2 months with the cost of the *final training run being ~$5.5 million
+This ~$5.5M reflects the “rental” cost for the GPU hours needed to train DeepSeek‑V3. It does not include:
+1. The capital expenditure for owning the hardware.
+2. Costs associated with prior research, ablation studies, or experiments on alternative architectures/algorithms/data. 
+ Deepseek made training more efficient (45 times more efficient) 
+ 
+ Use 8-bit instead of 32-bit to save memory. 
+ Compress key value indices which eat up a lot of VRAM; they got 93% compression ratios. 
+ Do multi-token prediction instead of single-token prediction -&gt; doubled inference speeds 
+ The MOE model decomposes a big model into small models that can run on cons"
+"What cost-saving measures did Deepseek implement in their training process, and what were their results?","Deepseek implemented several cost-saving measures: they used 8-bit instead of 32-bit to save memory, they compressed key value indices achieving 93% compression ratios, and they used multi-token prediction instead of single-token prediction to double inference speeds. They also made training more efficient, achieving 45 times better efficiency."," for better hardware, Deepseek improved the algorithms. Thus achieving better results at a software level.
+Note that the following details are for the Deepseek V3 model.
+• Deepseek said it trained a model using a data centre of some 2,000 of Nvidia H800 GPUs.
+• Time duration 2 months with the cost of the *final training run being ~$5.5 million
+This ~$5.5M reflects the “rental” cost for the GPU hours needed to train DeepSeek‑V3. It does not include:
+1. The capital expenditure for owning the hardware.
+2. Costs associated with prior research, ablation studies, or experiments on alternative architectures/algorithms/data. 
+ Deepseek made training more efficient (45 times more efficient) 
+ 
+ Use 8-bit instead of 32-bit to save memory. 
+ Compress key value indices which eat up a lot of VRAM; they got 93% compression ratios. 
+ Do multi-token prediction instead of single-token prediction -&gt; doubled inference speeds 
+ The MOE model decomposes a big model into small models that can run on cons"
+"What does the $5.5 million cost associated with the final training run of Deepseek V3 represent, and what costs are *not* included in this figure?","The ~$5.5 million cost represents the rental cost for the GPU hours needed to train Deepseek V3. This cost does not include the capital expenditure for owning the hardware or costs associated with prior research, ablation studies, or experiments on alternative architectures/algorithms/data."," for better hardware, Deepseek improved the algorithms. Thus achieving better results at a software level.
+Note that the following details are for the Deepseek V3 model.
+• Deepseek said it trained a model using a data centre of some 2,000 of Nvidia H800 GPUs.
+• Time duration 2 months with the cost of the *final training run being ~$5.5 million
+This ~$5.5M reflects the “rental” cost for the GPU hours needed to train DeepSeek‑V3. It does not include:
+1. The capital expenditure for owning the hardware.
+2. Costs associated with prior research, ablation studies, or experiments on alternative architectures/algorithms/data. 
+ Deepseek made training more efficient (45 times more efficient) 
+ 
+ Use 8-bit instead of 32-bit to save memory. 
+ Compress key value indices which eat up a lot of VRAM; they got 93% compression ratios. 
+ Do multi-token prediction instead of single-token prediction -&gt; doubled inference speeds 
+ The MOE model decomposes a big model into small models that can run on cons"
+What architectural choices and training techniques contributed to the efficiency of the Deepseek v3 model?,"The Deepseek v3 model achieved efficiency through several key architectural and training choices.  It utilizes a Mixture-of-Experts (MoE) architecture, activating only 37B parameters out of a total 671B for each token, significantly reducing compute requirements compared to dense models. It also employs Multi-head Latent Attention (MLA) to compress the Key-Value cache, reducing memory usage.  Finally, it uses FP8 mixed precision training, reducing memory footprint by up to 50% compared to traditional FP16/FP32 formats, and accelerates training."," got 93% compression ratios. 
+ Do multi-token prediction instead of single-token prediction -&gt; doubled inference speeds 
+ The MOE model decomposes a big model into small models that can run on consumer-grade hardware. 
+ 
+ Summary of how Deepseek v3 was so efficient at training the frontier model 
+ 
+ Model Architecture
+The model employs a Mixture-of-Experts (MoE) architecture, where only 37B parameters fire for each token out of the total 671B. This sparse activation significantly reduces compute requirements compared to dense models.
+The model uses Multi-head Latent Attention (MLA). This compresses the Key-Value cache, reducing memory usage and enabling more efficient training. 
+ FP8 Mixed Precision Training:
+They implemented an FP8 mixed precision training framework. Which reduces memory usage and accelerates training compared to higher precision formats.
+Reduced memory footprint by up to 50% compared to traditional FP16/FP32 formats.
+They use fine-grained quantisation strategies a"
+How does the Mixture-of-Experts (MoE) architecture contribute to the efficiency of the Deepseek v3 model?,"The Mixture-of-Experts (MoE) architecture contributes to the efficiency of the Deepseek v3 model by decomposing a large model into smaller models that can run on consumer-grade hardware. Specifically, the model only activates a small subset of its parameters (37B out of 671B) for each token. This 'sparse activation' drastically reduces the compute requirements compared to traditional, dense models, as only a fraction of the model needs to be processed for each input."," got 93% compression ratios. 
+ Do multi-token prediction instead of single-token prediction -&gt; doubled inference speeds 
+ The MOE model decomposes a big model into small models that can run on consumer-grade hardware. 
+ 
+ Summary of how Deepseek v3 was so efficient at training the frontier model 
+ 
+ Model Architecture
+The model employs a Mixture-of-Experts (MoE) architecture, where only 37B parameters fire for each token out of the total 671B. This sparse activation significantly reduces compute requirements compared to dense models.
+The model uses Multi-head Latent Attention (MLA). This compresses the Key-Value cache, reducing memory usage and enabling more efficient training. 
+ FP8 Mixed Precision Training:
+They implemented an FP8 mixed precision training framework. Which reduces memory usage and accelerates training compared to higher precision formats.
+Reduced memory footprint by up to 50% compared to traditional FP16/FP32 formats.
+They use fine-grained quantisation strategies a"
+What is the purpose of Multi-head Latent Attention (MLA) and how does it contribute to the efficiency of Deepseek v3?,"The purpose of Multi-head Latent Attention (MLA) is to compress the Key-Value cache. By compressing this cache, MLA reduces memory usage. This reduction in memory usage enables more efficient training of the Deepseek v3 model."," got 93% compression ratios. 
+ Do multi-token prediction instead of single-token prediction -&gt; doubled inference speeds 
+ The MOE model decomposes a big model into small models that can run on consumer-grade hardware. 
+ 
+ Summary of how Deepseek v3 was so efficient at training the frontier model 
+ 
+ Model Architecture
+The model employs a Mixture-of-Experts (MoE) architecture, where only 37B parameters fire for each token out of the total 671B. This sparse activation significantly reduces compute requirements compared to dense models.
+The model uses Multi-head Latent Attention (MLA). This compresses the Key-Value cache, reducing memory usage and enabling more efficient training. 
+ FP8 Mixed Precision Training:
+They implemented an FP8 mixed precision training framework. Which reduces memory usage and accelerates training compared to higher precision formats.
+Reduced memory footprint by up to 50% compared to traditional FP16/FP32 formats.
+They use fine-grained quantisation strategies a"
+What are some advantages of using lower precision formats in the training framework?,Using lower precision formats in the training framework reduces memory usage by up to 50% compared to traditional FP16/FP32 formats and accelerates training compared to higher precision formats. The framework also employs fine-grained quantization strategies and increased accumulation precision to maintain accuracy despite the lower precision.,"ry usage and accelerates training compared to higher precision formats.
+Reduced memory footprint by up to 50% compared to traditional FP16/FP32 formats.
+They use fine-grained quantisation strategies and increased accumulation precision to maintain accuracy. 
+ Load Balancing Strategy
+They pioneered an auxiliary loss-free strategy for load balancing in the MoE architecture. This improved performance without the drawbacks of traditional auxiliary loss methods. 
+ Training Framework
+They developed a custom training framework called HAI-LLM with several optimisations:
+DualPipe algorithm for efficient pipeline parallelism. This reduces pipeline bubbles and overlapping computation and communication.
+Efficient cross-node all-to-all communication kernels to fully utilise network bandwidth.
+Careful memory optimisations to avoid using costly tensor parallelism. 
+ 
+ Breakdown of the costs of the Deepseek v3 model 
+ Deepseek’s flagship model v3 showcases an architecture with a 671B parameter MOE (Mi"
+What are some key features of the custom training framework called HAI-LLM?,"The custom training framework HAI-LLM includes several optimizations. It employs a DualPipe algorithm for efficient pipeline parallelism, which reduces pipeline bubbles and overlaps computation and communication. It also utilizes efficient cross-node all-to-all communication kernels to fully utilize network bandwidth. Additionally, the framework implements careful memory optimizations to avoid using costly tensor parallelism.","ry usage and accelerates training compared to higher precision formats.
+Reduced memory footprint by up to 50% compared to traditional FP16/FP32 formats.
+They use fine-grained quantisation strategies and increased accumulation precision to maintain accuracy. 
+ Load Balancing Strategy
+They pioneered an auxiliary loss-free strategy for load balancing in the MoE architecture. This improved performance without the drawbacks of traditional auxiliary loss methods. 
+ Training Framework
+They developed a custom training framework called HAI-LLM with several optimisations:
+DualPipe algorithm for efficient pipeline parallelism. This reduces pipeline bubbles and overlapping computation and communication.
+Efficient cross-node all-to-all communication kernels to fully utilise network bandwidth.
+Careful memory optimisations to avoid using costly tensor parallelism. 
+ 
+ Breakdown of the costs of the Deepseek v3 model 
+ Deepseek’s flagship model v3 showcases an architecture with a 671B parameter MOE (Mi"
+What load balancing strategy was pioneered and what are its benefits?,They pioneered an auxiliary loss-free strategy for load balancing in the MoE architecture. This improved performance without the drawbacks of traditional auxiliary loss methods.,"ry usage and accelerates training compared to higher precision formats.
+Reduced memory footprint by up to 50% compared to traditional FP16/FP32 formats.
+They use fine-grained quantisation strategies and increased accumulation precision to maintain accuracy. 
+ Load Balancing Strategy
+They pioneered an auxiliary loss-free strategy for load balancing in the MoE architecture. This improved performance without the drawbacks of traditional auxiliary loss methods. 
+ Training Framework
+They developed a custom training framework called HAI-LLM with several optimisations:
+DualPipe algorithm for efficient pipeline parallelism. This reduces pipeline bubbles and overlapping computation and communication.
+Efficient cross-node all-to-all communication kernels to fully utilise network bandwidth.
+Careful memory optimisations to avoid using costly tensor parallelism. 
+ 
+ Breakdown of the costs of the Deepseek v3 model 
+ Deepseek’s flagship model v3 showcases an architecture with a 671B parameter MOE (Mi"
+"How many storage targets are created in total, and how is that number determined?","There are 30 storage targets created in total. This is determined by creating 5 storage targets on each of the 6 SSDs (one SSD per node A, B, C, D, E, and F). Therefore, 6 nodes multiplied by 5 targets per node equals 30 targets (A1, A2, A3, ..., F5)."," targets join different chains. 
+ Suppose there are 6 nodes: A, B, C, D, E, F. Each node has 1 SSD. Create 5 storage targets on each SSD: 1, 2, ... 5. Then there are 30 targets in total: A1, A2, A3, ..., F5. If each chunk has 3 replicas, a chain table is constructed as follows. 
+ | Chain | Version | Target 1 (head) | Target 2 | Target 3 (tail) |
+| :---: | :-----: | :-------------: | :------: | :-------------: |
+|   1   |    1    |       A1        |    B1    |       C1        |
+|   2   |    1    |       D1        |    E1    |       F1        |
+|   3   |    1    |       A2        |    B2    |       C2        |
+|   4   |    1    |       D2        |    E2    |       F2        |
+|   5   |    1    |       A3        |    B3    |       C3        |
+|   6   |    1    |       D3        |    E3    |       F3        |
+|   7   |    1    |       A4        |    B4    |       C4        |
+|   8   |    1    |       D4        |    E4    |       F4        |
+|   9   |    1    |       A5        |    B5    | "
+"According to the text, what constitutes a chain in the chain table, and what roles do the targets play within it?","According to the text, a chain in the chain table consists of three targets: Target 1 (designated as the head), Target 2, and Target 3 (designated as the tail). Each chain also has a 'Chain' number and a 'Version' number associated with it. For example, Chain 1, Version 1, is composed of targets A1 (head), B1, and C1 (tail)."," targets join different chains. 
+ Suppose there are 6 nodes: A, B, C, D, E, F. Each node has 1 SSD. Create 5 storage targets on each SSD: 1, 2, ... 5. Then there are 30 targets in total: A1, A2, A3, ..., F5. If each chunk has 3 replicas, a chain table is constructed as follows. 
+ | Chain | Version | Target 1 (head) | Target 2 | Target 3 (tail) |
+| :---: | :-----: | :-------------: | :------: | :-------------: |
+|   1   |    1    |       A1        |    B1    |       C1        |
+|   2   |    1    |       D1        |    E1    |       F1        |
+|   3   |    1    |       A2        |    B2    |       C2        |
+|   4   |    1    |       D2        |    E2    |       F2        |
+|   5   |    1    |       A3        |    B3    |       C3        |
+|   6   |    1    |       D3        |    E3    |       F3        |
+|   7   |    1    |       A4        |    B4    |       C4        |
+|   8   |    1    |       D4        |    E4    |       F4        |
+|   9   |    1    |       A5        |    B5    | "
+"If each chunk has 3 replicas, what does the provided chain table illustrate?","If each chunk has 3 replicas, the chain table illustrates how these replicas are distributed across different storage targets (and therefore across different nodes). Each row in the table represents a chain where a chunk and its replicas are stored. The 'Target 1', 'Target 2', and 'Target 3' columns indicate the specific storage targets holding the replicas of a chunk, forming a chain of replication."," targets join different chains. 
+ Suppose there are 6 nodes: A, B, C, D, E, F. Each node has 1 SSD. Create 5 storage targets on each SSD: 1, 2, ... 5. Then there are 30 targets in total: A1, A2, A3, ..., F5. If each chunk has 3 replicas, a chain table is constructed as follows. 
+ | Chain | Version | Target 1 (head) | Target 2 | Target 3 (tail) |
+| :---: | :-----: | :-------------: | :------: | :-------------: |
+|   1   |    1    |       A1        |    B1    |       C1        |
+|   2   |    1    |       D1        |    E1    |       F1        |
+|   3   |    1    |       A2        |    B2    |       C2        |
+|   4   |    1    |       D2        |    E2    |       F2        |
+|   5   |    1    |       A3        |    B3    |       C3        |
+|   6   |    1    |       D3        |    E3    |       F3        |
+|   7   |    1    |       A4        |    B4    |       C4        |
+|   8   |    1    |       D4        |    E4    |       F4        |
+|   9   |    1    |       A5        |    B5    | "
+"What happens to the version number of a chain when the chain is modified, and who is responsible for making changes to the chain tables?","When a chain is changed (for example, if a storage target goes offline), its version number is incremented. Only the primary cluster manager is authorized to make modifications to the chain tables.","     F3        |
+|   7   |    1    |       A4        |    B4    |       C4        |
+|   8   |    1    |       D4        |    E4    |       F4        |
+|   9   |    1    |       A5        |    B5    |       C5        |
+|  10   |    1    |       D5        |    E5    |       F5        | 
+ Each chain has a version number. The version number is incremented if the chain is changed (e.g. a storage target is offline). Only the primary cluster manager makes changes to chain tables. 
+ A few chain tables can be constructed to support different data placement requirements. For example, two chain tables can be created, one for batch/offline jobs and another for online services. The two tables consist of storage targets on mutually exclusive nodes and SSDs. 
+ Logically, the state of each chain changes independently. Each chain can be included in multiple chain tables. The concept of chain table is created to let metadata service pick a table for each file and stripe file chunks across chains in the "
+"Why might multiple chain tables be created, and what is an example of how they might differ?","Multiple chain tables can be created to accommodate different data placement needs. As an example, one chain table could be designed for batch/offline jobs, while another is used for online services. These two tables might be configured to use storage targets on mutually exclusive nodes and SSDs.","     F3        |
+|   7   |    1    |       A4        |    B4    |       C4        |
+|   8   |    1    |       D4        |    E4    |       F4        |
+|   9   |    1    |       A5        |    B5    |       C5        |
+|  10   |    1    |       D5        |    E5    |       F5        | 
+ Each chain has a version number. The version number is incremented if the chain is changed (e.g. a storage target is offline). Only the primary cluster manager makes changes to chain tables. 
+ A few chain tables can be constructed to support different data placement requirements. For example, two chain tables can be created, one for batch/offline jobs and another for online services. The two tables consist of storage targets on mutually exclusive nodes and SSDs. 
+ Logically, the state of each chain changes independently. Each chain can be included in multiple chain tables. The concept of chain table is created to let metadata service pick a table for each file and stripe file chunks across chains in the "
+"Explain the relationship between chains and chain tables, including the independence of chain states and how metadata services use chain tables.","Each chain has an independent state, meaning its state changes independently of other chains. A chain can be included in multiple chain tables. Chain tables are used by the metadata service to select a table for each file and stripe the file's chunks across chains within that table.","     F3        |
+|   7   |    1    |       A4        |    B4    |       C4        |
+|   8   |    1    |       D4        |    E4    |       F4        |
+|   9   |    1    |       A5        |    B5    |       C5        |
+|  10   |    1    |       D5        |    E5    |       F5        | 
+ Each chain has a version number. The version number is incremented if the chain is changed (e.g. a storage target is offline). Only the primary cluster manager makes changes to chain tables. 
+ A few chain tables can be constructed to support different data placement requirements. For example, two chain tables can be created, one for batch/offline jobs and another for online services. The two tables consist of storage targets on mutually exclusive nodes and SSDs. 
+ Logically, the state of each chain changes independently. Each chain can be included in multiple chain tables. The concept of chain table is created to let metadata service pick a table for each file and stripe file chunks across chains in the "
+What is the purpose of a chain table?,The concept of chain table is created to let the metadata service pick a table for each file and stripe file chunks across chains in the table. This likely facilitates data distribution and recovery processes.,"ndependently. Each chain can be included in multiple chain tables. The concept of chain table is created to let metadata service pick a table for each file and stripe file chunks across chains in the table. 
+ Balanced traffic during recovery 
+ Suppose read traffic is evenly distributed among all storage targets in the above chain table. When A fails its read requests would be redirected to B and C. Under heavy load the read bandwidth of B, C is immediately saturated and B, C become the bottleneck of the entire system. Replacing a failed SSD and syncing data to the new SSD can take several hours. The read throughput is impaired during this period. 
+ To reduce the performance impact, we can have more SSDs share the redirected traffic. In the following chain table, A is paired with every other SSDs. When A fails, each of the other SSDs receives 1/5 of A’s read traffic. 
+ | Chain | Version | Target 1 (head) | Target 2 | Target 3 (tail) |
+| :---: | :-----: | :-------------: | :------: | :--"
+"What happens when a storage target fails, and what problem does this cause?","When a storage target (like SSD 'A' in the example) fails, its read requests are redirected to the remaining storage targets in its chain (in the first example, 'B' and 'C'). Under heavy load, this can saturate the read bandwidth of the remaining targets, causing them to become bottlenecks and impairing the overall system's read throughput.","ndependently. Each chain can be included in multiple chain tables. The concept of chain table is created to let metadata service pick a table for each file and stripe file chunks across chains in the table. 
+ Balanced traffic during recovery 
+ Suppose read traffic is evenly distributed among all storage targets in the above chain table. When A fails its read requests would be redirected to B and C. Under heavy load the read bandwidth of B, C is immediately saturated and B, C become the bottleneck of the entire system. Replacing a failed SSD and syncing data to the new SSD can take several hours. The read throughput is impaired during this period. 
+ To reduce the performance impact, we can have more SSDs share the redirected traffic. In the following chain table, A is paired with every other SSDs. When A fails, each of the other SSDs receives 1/5 of A’s read traffic. 
+ | Chain | Version | Target 1 (head) | Target 2 | Target 3 (tail) |
+| :---: | :-----: | :-------------: | :------: | :--"
+"How can the performance impact of a storage target failure be reduced, according to the text?","The performance impact of a storage target failure can be reduced by having more SSDs share the redirected traffic. This is achieved by pairing the failed storage target with more storage targets in the chain table, so that when a failure occurs, the redirected read traffic is distributed across a larger number of SSDs. In the example, SSD 'A' is paired with every other SSD, so when 'A' fails, each of the other SSDs receives 1/5 of A’s read traffic.","ndependently. Each chain can be included in multiple chain tables. The concept of chain table is created to let metadata service pick a table for each file and stripe file chunks across chains in the table. 
+ Balanced traffic during recovery 
+ Suppose read traffic is evenly distributed among all storage targets in the above chain table. When A fails its read requests would be redirected to B and C. Under heavy load the read bandwidth of B, C is immediately saturated and B, C become the bottleneck of the entire system. Replacing a failed SSD and syncing data to the new SSD can take several hours. The read throughput is impaired during this period. 
+ To reduce the performance impact, we can have more SSDs share the redirected traffic. In the following chain table, A is paired with every other SSDs. When A fails, each of the other SSDs receives 1/5 of A’s read traffic. 
+ | Chain | Version | Target 1 (head) | Target 2 | Target 3 (tail) |
+| :---: | :-----: | :-------------: | :------: | :--"
+"What happens to the read traffic of SSD A when it fails, according to the provided text?","When SSD A fails, each of the other SSDs receives 1/5 of A's read traffic. This means that the remaining SSDs have to pick up the slack and handle the load that was previously handled by SSD A.","r SSDs. When A fails, each of the other SSDs receives 1/5 of A’s read traffic. 
+ | Chain | Version | Target 1 (head) | Target 2 | Target 3 (tail) |
+| :---: | :-----: | :-------------: | :------: | :-------------: |
+|   1   |    1    |       B1        |    E1    |       F1        |
+|   2   |    1    |       A1        |    B2    |       D1        |
+|   3   |    1    |       A2        |    D2    |       F2        |
+|   4   |    1    |       C1        |    D3    |       E2        |
+|   5   |    1    |       A3        |    C2    |       F3        |
+|   6   |    1    |       A4        |    B3    |       E3        |
+|   7   |    1    |       B4        |    C3    |       F4        |
+|   8   |    1    |       B5        |    C4    |       E4        |
+|   9   |    1    |       A5        |    C5    |       D4        |
+|  10   |    1    |       D5        |    E5    |       F5        | 
+ To achieve maximum read throughput during recovery, the load balance problem can be formulated as a balanced inco"
+What are the 'Target' columns representing in the provided table?,"The 'Target' columns, specifically Target 1 (head), Target 2, and Target 3 (tail), represent different SSDs. They likely indicate the SSDs involved in a chain or sequence, potentially for data replication or distribution. Target 1 is designated as the 'head' and Target 3 is the 'tail', suggesting a directionality or flow within the chain.","r SSDs. When A fails, each of the other SSDs receives 1/5 of A’s read traffic. 
+ | Chain | Version | Target 1 (head) | Target 2 | Target 3 (tail) |
+| :---: | :-----: | :-------------: | :------: | :-------------: |
+|   1   |    1    |       B1        |    E1    |       F1        |
+|   2   |    1    |       A1        |    B2    |       D1        |
+|   3   |    1    |       A2        |    D2    |       F2        |
+|   4   |    1    |       C1        |    D3    |       E2        |
+|   5   |    1    |       A3        |    C2    |       F3        |
+|   6   |    1    |       A4        |    B3    |       E3        |
+|   7   |    1    |       B4        |    C3    |       F4        |
+|   8   |    1    |       B5        |    C4    |       E4        |
+|   9   |    1    |       A5        |    C5    |       D4        |
+|  10   |    1    |       D5        |    E5    |       F5        | 
+ To achieve maximum read throughput during recovery, the load balance problem can be formulated as a balanced inco"
+"What is the purpose of load balancing during recovery, as mentioned in the text?","The text mentions that to achieve maximum read throughput during recovery, the load balance problem can be formulated as a balanced inco. The purpose of load balancing is to distribute the workload evenly across the remaining SSDs when one fails, ensuring that no single SSD becomes overloaded and that overall read performance is maximized during the recovery process. The text is cut off, so there might be other aspects relevant to the inco.","r SSDs. When A fails, each of the other SSDs receives 1/5 of A’s read traffic. 
+ | Chain | Version | Target 1 (head) | Target 2 | Target 3 (tail) |
+| :---: | :-----: | :-------------: | :------: | :-------------: |
+|   1   |    1    |       B1        |    E1    |       F1        |
+|   2   |    1    |       A1        |    B2    |       D1        |
+|   3   |    1    |       A2        |    D2    |       F2        |
+|   4   |    1    |       C1        |    D3    |       E2        |
+|   5   |    1    |       A3        |    C2    |       F3        |
+|   6   |    1    |       A4        |    B3    |       E3        |
+|   7   |    1    |       B4        |    C3    |       F4        |
+|   8   |    1    |       B5        |    C4    |       E4        |
+|   9   |    1    |       A5        |    C5    |       D4        |
+|  10   |    1    |       D5        |    E5    |       F5        | 
+ To achieve maximum read throughput during recovery, the load balance problem can be formulated as a balanced inco"
+What replication protocol is CRAQ and what type of workloads is it optimized for?,"CRAQ is a write-all-read-any replication protocol. It is optimized for read-heavy workloads, where maximizing read throughput is critical.","      D4        |
+|  10   |    1    |       D5        |    E5    |       F5        | 
+ To achieve maximum read throughput during recovery, the load balance problem can be formulated as a balanced incomplete block design. The optimal solution is obtained by using integer programming solver. 
+ Data replication 
+ CRAQ is a write-all-read-any replication protocol optimized for read-heavy workloads. Utilizing read bandwidth of all replicas is critical to achieve highest read throughput in an all-flash storage system. 
+ When a write request is received by a storage service, it goes through the following steps: 
+ 
+ 
+ The service checks if the chain version in write request matches with the latest known version; reject the request if it’s not. The write request could be sent by a client or a predecessor in the chain. 
+ 
+ 
+ The service issues RDMA Read operations to pull write data. If the client/predecessor fails, the RDMA Read operations may time out and the write is aborted. 
+ 
+ 
+ Once the w"
+"In the context of data recovery, how can the load balance problem be formulated to achieve maximum read throughput, and how is the optimal solution obtained?","To achieve maximum read throughput during recovery, the load balance problem can be formulated as a balanced incomplete block design. The optimal solution is obtained by using an integer programming solver.","      D4        |
+|  10   |    1    |       D5        |    E5    |       F5        | 
+ To achieve maximum read throughput during recovery, the load balance problem can be formulated as a balanced incomplete block design. The optimal solution is obtained by using integer programming solver. 
+ Data replication 
+ CRAQ is a write-all-read-any replication protocol optimized for read-heavy workloads. Utilizing read bandwidth of all replicas is critical to achieve highest read throughput in an all-flash storage system. 
+ When a write request is received by a storage service, it goes through the following steps: 
+ 
+ 
+ The service checks if the chain version in write request matches with the latest known version; reject the request if it’s not. The write request could be sent by a client or a predecessor in the chain. 
+ 
+ 
+ The service issues RDMA Read operations to pull write data. If the client/predecessor fails, the RDMA Read operations may time out and the write is aborted. 
+ 
+ 
+ Once the w"
+What is the first step a storage service takes when it receives a write request?,"The first step a storage service takes when it receives a write request is to check if the chain version in the write request matches with the latest known version. If it does not match, the request is rejected. The write request could be sent by a client or a predecessor in the chain.","      D4        |
+|  10   |    1    |       D5        |    E5    |       F5        | 
+ To achieve maximum read throughput during recovery, the load balance problem can be formulated as a balanced incomplete block design. The optimal solution is obtained by using integer programming solver. 
+ Data replication 
+ CRAQ is a write-all-read-any replication protocol optimized for read-heavy workloads. Utilizing read bandwidth of all replicas is critical to achieve highest read throughput in an all-flash storage system. 
+ When a write request is received by a storage service, it goes through the following steps: 
+ 
+ 
+ The service checks if the chain version in write request matches with the latest known version; reject the request if it’s not. The write request could be sent by a client or a predecessor in the chain. 
+ 
+ 
+ The service issues RDMA Read operations to pull write data. If the client/predecessor fails, the RDMA Read operations may time out and the write is aborted. 
+ 
+ 
+ Once the w"
+How does the service retrieve write data during the process?,The service retrieves write data by issuing RDMA Read operations. These operations are used to pull the write data from the client or predecessor in the chain.,"cessor in the chain. 
+ 
+ 
+ The service issues RDMA Read operations to pull write data. If the client/predecessor fails, the RDMA Read operations may time out and the write is aborted. 
+ 
+ 
+ Once the write data is fetched into local memory buffer, a lock for the chunk to be updated is acquired from a lock manager. Concurrent writes to the same chunk are blocked. All writes are serialized at the head target. 
+ 
+ 
+ The service reads the committed version of the chunk into memory, applies the update, and stores the updated chunk as a pending version. A storage target may store two versions of a chunk: a committed version and a pending version. Each version has a monotonically-increasing version number. The version numbers of committed version and pending versions are  v  and  u  respectively, and satisfy  u = v + 1 . 
+ 
+ 
+ If the service is the tail, the committed version is atomically replaced by the pending version and an acknowledgment message is sent to the predecessor. Otherwise, the "
+What happens after the write data is fetched into the local memory buffer?,"Once the write data is fetched into the local memory buffer, a lock is acquired from a lock manager for the chunk that is to be updated. This blocks concurrent writes to the same chunk, effectively serializing all writes at the head target.","cessor in the chain. 
+ 
+ 
+ The service issues RDMA Read operations to pull write data. If the client/predecessor fails, the RDMA Read operations may time out and the write is aborted. 
+ 
+ 
+ Once the write data is fetched into local memory buffer, a lock for the chunk to be updated is acquired from a lock manager. Concurrent writes to the same chunk are blocked. All writes are serialized at the head target. 
+ 
+ 
+ The service reads the committed version of the chunk into memory, applies the update, and stores the updated chunk as a pending version. A storage target may store two versions of a chunk: a committed version and a pending version. Each version has a monotonically-increasing version number. The version numbers of committed version and pending versions are  v  and  u  respectively, and satisfy  u = v + 1 . 
+ 
+ 
+ If the service is the tail, the committed version is atomically replaced by the pending version and an acknowledgment message is sent to the predecessor. Otherwise, the "
+"How are chunk versions managed, and what is the relationship between the committed and pending versions?","A storage target may store two versions of a chunk: a committed version and a pending version. Each version has a monotonically increasing version number. If the version numbers of the committed version and pending versions are 'v' and 'u' respectively, then 'u' is always equal to 'v + 1'.","cessor in the chain. 
+ 
+ 
+ The service issues RDMA Read operations to pull write data. If the client/predecessor fails, the RDMA Read operations may time out and the write is aborted. 
+ 
+ 
+ Once the write data is fetched into local memory buffer, a lock for the chunk to be updated is acquired from a lock manager. Concurrent writes to the same chunk are blocked. All writes are serialized at the head target. 
+ 
+ 
+ The service reads the committed version of the chunk into memory, applies the update, and stores the updated chunk as a pending version. A storage target may store two versions of a chunk: a committed version and a pending version. Each version has a monotonically-increasing version number. The version numbers of committed version and pending versions are  v  and  u  respectively, and satisfy  u = v + 1 . 
+ 
+ 
+ If the service is the tail, the committed version is atomically replaced by the pending version and an acknowledgment message is sent to the predecessor. Otherwise, the "
+What happens when an acknowledgment message arrives at a storage service?,"When an acknowledgment message arrives at a storage service, the service replaces the committed version with the pending version and continues to propagate the message to its predecessor. Subsequently, the local chunk lock is released.","and satisfy  u = v + 1 . 
+ 
+ 
+ If the service is the tail, the committed version is atomically replaced by the pending version and an acknowledgment message is sent to the predecessor. Otherwise, the write request is forwarded to the successor. When the committed version is updated, the current chain version is stored as a field in the chunk metadata. 
+ 
+ 
+ When an acknowledgment message arrives at a storage service, the service replaces the committed version with the pending version and continues to propagate the message to its predecessor. The local chunk lock is then released. 
+ 
+ 
+ Suppose there are 3 targets in the chain:  A, B, C . A write request has just entered step 5 at  A .  A  forwards the request to successor  B . Then  B  instantly fails and the forwarded write request is lost. When cluster manager detects  B ’s failure, it marks  B  as offline and moves it to the end of chain and broadcasts the updated chain table. Once  A  receives the latest chain table, it forwards th"
+What happens if the service is the tail in the chain?,"If the service is the tail, the committed version is atomically replaced by the pending version, and an acknowledgment message is sent to the predecessor. Otherwise, the write request is forwarded to the successor.","and satisfy  u = v + 1 . 
+ 
+ 
+ If the service is the tail, the committed version is atomically replaced by the pending version and an acknowledgment message is sent to the predecessor. Otherwise, the write request is forwarded to the successor. When the committed version is updated, the current chain version is stored as a field in the chunk metadata. 
+ 
+ 
+ When an acknowledgment message arrives at a storage service, the service replaces the committed version with the pending version and continues to propagate the message to its predecessor. The local chunk lock is then released. 
+ 
+ 
+ Suppose there are 3 targets in the chain:  A, B, C . A write request has just entered step 5 at  A .  A  forwards the request to successor  B . Then  B  instantly fails and the forwarded write request is lost. When cluster manager detects  B ’s failure, it marks  B  as offline and moves it to the end of chain and broadcasts the updated chain table. Once  A  receives the latest chain table, it forwards th"
+What happens when the cluster manager detects a failure in a target within the chain?,"When the cluster manager detects a failure, such as B failing in the example provided, it marks the failed target (B) as offline. It then moves the failed target to the end of the chain and broadcasts the updated chain table to all relevant services. For example, in the described scenario, once A receives the updated chain table, it will forward the write request accordingly.","and satisfy  u = v + 1 . 
+ 
+ 
+ If the service is the tail, the committed version is atomically replaced by the pending version and an acknowledgment message is sent to the predecessor. Otherwise, the write request is forwarded to the successor. When the committed version is updated, the current chain version is stored as a field in the chunk metadata. 
+ 
+ 
+ When an acknowledgment message arrives at a storage service, the service replaces the committed version with the pending version and continues to propagate the message to its predecessor. The local chunk lock is then released. 
+ 
+ 
+ Suppose there are 3 targets in the chain:  A, B, C . A write request has just entered step 5 at  A .  A  forwards the request to successor  B . Then  B  instantly fails and the forwarded write request is lost. When cluster manager detects  B ’s failure, it marks  B  as offline and moves it to the end of chain and broadcasts the updated chain table. Once  A  receives the latest chain table, it forwards th"
+What happens when the cluster manager detects the failure of node B?,"When the cluster manager detects the failure of node B, it marks B as offline, moves it to the end of the chain, and broadcasts the updated chain table to the other nodes in the cluster.","t. When cluster manager detects  B ’s failure, it marks  B  as offline and moves it to the end of chain and broadcasts the updated chain table. Once  A  receives the latest chain table, it forwards the write request to the new successor  C .  C  may not receive the latest chain table yet and rejects the request. But  A  can keep forwarding the request to  C . Eventually  C  gets the latest chain table and accepts the request. 
+ When a read request arrives at a storage service: 
+ 
+ 
+ When the service only has a committed version of the chunk, this version is returned to the client. 
+ 
+ 
+ Unlike CRAQ, our implementation does not issue version query to the tail target. When there are both committed and pending versions, the service replies a special status code to notify the client. The client may wait for a short interval and retry. Or the client can issue a relaxed read request to get the pending version. 
+ 
+ 
+ Failure detection 
+ The cluster manager relies on heartbeats to detect fail-"
+How does node A handle a write request after receiving an updated chain table due to node B's failure?,"After receiving the updated chain table indicating node B's failure, node A forwards the write request to the new successor, node C. If C rejects the request because it hasn't received the latest chain table yet, A continues to forward the request to C until C receives the updated chain table and accepts the request.","t. When cluster manager detects  B ’s failure, it marks  B  as offline and moves it to the end of chain and broadcasts the updated chain table. Once  A  receives the latest chain table, it forwards the write request to the new successor  C .  C  may not receive the latest chain table yet and rejects the request. But  A  can keep forwarding the request to  C . Eventually  C  gets the latest chain table and accepts the request. 
+ When a read request arrives at a storage service: 
+ 
+ 
+ When the service only has a committed version of the chunk, this version is returned to the client. 
+ 
+ 
+ Unlike CRAQ, our implementation does not issue version query to the tail target. When there are both committed and pending versions, the service replies a special status code to notify the client. The client may wait for a short interval and retry. Or the client can issue a relaxed read request to get the pending version. 
+ 
+ 
+ Failure detection 
+ The cluster manager relies on heartbeats to detect fail-"
+How does the storage service handle a read request when it has both committed and pending versions of a chunk?,"When the storage service has both committed and pending versions of a chunk, it replies with a special status code to notify the client. The client can then wait for a short interval and retry, or issue a relaxed read request to get the pending version.","t. When cluster manager detects  B ’s failure, it marks  B  as offline and moves it to the end of chain and broadcasts the updated chain table. Once  A  receives the latest chain table, it forwards the write request to the new successor  C .  C  may not receive the latest chain table yet and rejects the request. But  A  can keep forwarding the request to  C . Eventually  C  gets the latest chain table and accepts the request. 
+ When a read request arrives at a storage service: 
+ 
+ 
+ When the service only has a committed version of the chunk, this version is returned to the client. 
+ 
+ 
+ Unlike CRAQ, our implementation does not issue version query to the tail target. When there are both committed and pending versions, the service replies a special status code to notify the client. The client may wait for a short interval and retry. Or the client can issue a relaxed read request to get the pending version. 
+ 
+ 
+ Failure detection 
+ The cluster manager relies on heartbeats to detect fail-"
+What actions can a client take when faced with a situation where it needs to access a pending version?,"When a client needs to access a pending version, it has two options. It can either wait for a short interval and retry the request, or it can issue a relaxed read request to retrieve the pending version.","t may wait for a short interval and retry. Or the client can issue a relaxed read request to get the pending version. 
+ 
+ 
+ Failure detection 
+ The cluster manager relies on heartbeats to detect fail-stop failures. Cluster manager declares a service failed if it does not receive heartbeats from it for a configurable interval (e.g. T seconds). A service stops processing requests and exits if it cannot communicate with cluster manager for T/2 seconds. The heartbeat can be seen as a request to *renew a lease* granted by the manager. 
+ The metadata services are stateless. The list of online meta services provided by cluster manager is a simple service discovery mechanism that helps clients create connections to metadata services. If one meta service is down, the clients may switch to any other metadata service. 
+ Cluster manager plays a more critical role in membership changes of storage services. It maintains a global view of chain tables and storage targets’ states. Each storage target h"
+How does the cluster manager detect fail-stop failures in services?,"The cluster manager detects fail-stop failures by relying on heartbeats from the services. If the cluster manager does not receive heartbeats from a service for a configurable interval (e.g., T seconds), it declares that service as failed. A service will also stop processing requests and exit if it cannot communicate with the cluster manager for T/2 seconds. The heartbeat can be viewed as a request to renew a lease granted by the manager.","t may wait for a short interval and retry. Or the client can issue a relaxed read request to get the pending version. 
+ 
+ 
+ Failure detection 
+ The cluster manager relies on heartbeats to detect fail-stop failures. Cluster manager declares a service failed if it does not receive heartbeats from it for a configurable interval (e.g. T seconds). A service stops processing requests and exits if it cannot communicate with cluster manager for T/2 seconds. The heartbeat can be seen as a request to *renew a lease* granted by the manager. 
+ The metadata services are stateless. The list of online meta services provided by cluster manager is a simple service discovery mechanism that helps clients create connections to metadata services. If one meta service is down, the clients may switch to any other metadata service. 
+ Cluster manager plays a more critical role in membership changes of storage services. It maintains a global view of chain tables and storage targets’ states. Each storage target h"
+"What role does the cluster manager play in membership changes of storage services, and what information does it maintain?","The cluster manager plays a critical role in membership changes of storage services. It maintains a global view of chain tables and storage targets' states, providing a central point of coordination and information for the storage services.","t may wait for a short interval and retry. Or the client can issue a relaxed read request to get the pending version. 
+ 
+ 
+ Failure detection 
+ The cluster manager relies on heartbeats to detect fail-stop failures. Cluster manager declares a service failed if it does not receive heartbeats from it for a configurable interval (e.g. T seconds). A service stops processing requests and exits if it cannot communicate with cluster manager for T/2 seconds. The heartbeat can be seen as a request to *renew a lease* granted by the manager. 
+ The metadata services are stateless. The list of online meta services provided by cluster manager is a simple service discovery mechanism that helps clients create connections to metadata services. If one meta service is down, the clients may switch to any other metadata service. 
+ Cluster manager plays a more critical role in membership changes of storage services. It maintains a global view of chain tables and storage targets’ states. Each storage target h"
+"What is the role of the cluster manager with respect to storage services, and what information does it maintain?",The cluster manager plays a critical role in membership changes of storage services. It maintains a global view of chain tables and storage targets’ states.," metadata service. 
+ Cluster manager plays a more critical role in membership changes of storage services. It maintains a global view of chain tables and storage targets’ states. Each storage target has a public state and a local state. 
+ Public state indicates if it’s ready to serve read requests and if write requests would be propagated to it. Public states are stored with chain tables and distributed to services and clients. 
+ | Public State | Read | Write | Notes                                           |
+| :----------- | :--: | :---: | :---------------------------------------------- |
+| serving      |  Y   |   Y   | service alive and serving client requests       |
+| syncing      |  N   |   Y   | service alive and data recovery is in progress  |
+| waiting      |  N   |   N   | service alive and data recovery not started yet |
+| lastsrv      |  N   |   N   | service down and it was the last serving target |
+| offline      |  N   |   N   | service down or storage medium failure    "
+"What are the two types of states associated with a storage target, and what do they indicate?",Each storage target has a public state and a local state. Public state indicates if it’s ready to serve read requests and if write requests would be propagated to it.," metadata service. 
+ Cluster manager plays a more critical role in membership changes of storage services. It maintains a global view of chain tables and storage targets’ states. Each storage target has a public state and a local state. 
+ Public state indicates if it’s ready to serve read requests and if write requests would be propagated to it. Public states are stored with chain tables and distributed to services and clients. 
+ | Public State | Read | Write | Notes                                           |
+| :----------- | :--: | :---: | :---------------------------------------------- |
+| serving      |  Y   |   Y   | service alive and serving client requests       |
+| syncing      |  N   |   Y   | service alive and data recovery is in progress  |
+| waiting      |  N   |   N   | service alive and data recovery not started yet |
+| lastsrv      |  N   |   N   | service down and it was the last serving target |
+| offline      |  N   |   N   | service down or storage medium failure    "
+"Describe the 'syncing' public state of a storage target, specifying its read and write capabilities and the reason for being in that state.","When a storage target is in the 'syncing' public state, it is not ready to serve read requests (Read: N) but write requests will be propagated to it (Write: Y). The reason for being in this state is that the service is alive and data recovery is in progress."," metadata service. 
+ Cluster manager plays a more critical role in membership changes of storage services. It maintains a global view of chain tables and storage targets’ states. Each storage target has a public state and a local state. 
+ Public state indicates if it’s ready to serve read requests and if write requests would be propagated to it. Public states are stored with chain tables and distributed to services and clients. 
+ | Public State | Read | Write | Notes                                           |
+| :----------- | :--: | :---: | :---------------------------------------------- |
+| serving      |  Y   |   Y   | service alive and serving client requests       |
+| syncing      |  N   |   Y   | service alive and data recovery is in progress  |
+| waiting      |  N   |   N   | service alive and data recovery not started yet |
+| lastsrv      |  N   |   N   | service down and it was the last serving target |
+| offline      |  N   |   N   | service down or storage medium failure    "
+"Where is the local state of a storage target stored, and who is aware of it?",The local state of a storage target is stored in the memory of the cluster manager. It is only known by the storage services and the cluster manager.,"e alive and data recovery not started yet |
+| lastsrv      |  N   |   N   | service down and it was the last serving target |
+| offline      |  N   |   N   | service down or storage medium failure          | 
+ Local state is only known by storage services and cluster manager, and it’s stored in the memory of cluster manager. If a storage target has medium failure, the related service sets the target’s local state to offline in heartbeat. If a storage service is down, storage targets managed by the service are marked offline. 
+ | Local State | Notes                                                |
+| :---------- | :--------------------------------------------------- |
+| up-to-date  | service alive and serving client requests            |
+| online      | service alive and target in syncing or waiting state |
+| offline     | service down or storage medium failure               | 
+ A storage target can change from one public state to another in response to the latest local state. The local "
+What happens to the local state of a storage target if it experiences a medium failure?,"If a storage target has a medium failure, the related storage service sets the target’s local state to 'offline' in the heartbeat.","e alive and data recovery not started yet |
+| lastsrv      |  N   |   N   | service down and it was the last serving target |
+| offline      |  N   |   N   | service down or storage medium failure          | 
+ Local state is only known by storage services and cluster manager, and it’s stored in the memory of cluster manager. If a storage target has medium failure, the related service sets the target’s local state to offline in heartbeat. If a storage service is down, storage targets managed by the service are marked offline. 
+ | Local State | Notes                                                |
+| :---------- | :--------------------------------------------------- |
+| up-to-date  | service alive and serving client requests            |
+| online      | service alive and target in syncing or waiting state |
+| offline     | service down or storage medium failure               | 
+ A storage target can change from one public state to another in response to the latest local state. The local "
+What happens to the storage targets managed by a service if that service goes down?,"If a storage service is down, the storage targets managed by that service are marked as 'offline'.","e alive and data recovery not started yet |
+| lastsrv      |  N   |   N   | service down and it was the last serving target |
+| offline      |  N   |   N   | service down or storage medium failure          | 
+ Local state is only known by storage services and cluster manager, and it’s stored in the memory of cluster manager. If a storage target has medium failure, the related service sets the target’s local state to offline in heartbeat. If a storage service is down, storage targets managed by the service are marked offline. 
+ | Local State | Notes                                                |
+| :---------- | :--------------------------------------------------- |
+| up-to-date  | service alive and serving client requests            |
+| online      | service alive and target in syncing or waiting state |
+| offline     | service down or storage medium failure               | 
+ A storage target can change from one public state to another in response to the latest local state. The local "
+What happens if a storage target is marked as offline?,"If a storage target is marked as offline, it is moved to the end of the chain. This implies a change in the target's position or prioritization within the storage system."," waiting state |
+| offline     | service down or storage medium failure               | 
+ A storage target can change from one public state to another in response to the latest local state. The local state plays the role of a triggering event. The cluster manager periodically scans every chain and updates the public states of targets on the chain according to a state-transition table. 
+ 
+ 
+ The chain version is incremented if the chain is updated. 
+ 
+ 
+ If a storage target is marked offline, it’s moved to the end of chain. 
+ 
+ 
+ If a storage service finds public state of any local storage target is lastsrv or offline, it exits immediately. The service may be isolated from the cluster manager by network partition error. 
+ 
+ 
+ Once the data recovery of a storage target in syncing state is completed, the storage service set the target’s local state to up-to-date in subsequent heartbeat messages sent to cluster manager. 
+ 
+ 
+ | Local State | Current Public State | Predecessor’s Public Stat"
+Under what condition does a storage service exit immediately?,A storage service exits immediately if it finds the public state of any local storage target to be 'lastsrv' or 'offline'. This indicates a critical issue that requires immediate termination of the service.," waiting state |
+| offline     | service down or storage medium failure               | 
+ A storage target can change from one public state to another in response to the latest local state. The local state plays the role of a triggering event. The cluster manager periodically scans every chain and updates the public states of targets on the chain according to a state-transition table. 
+ 
+ 
+ The chain version is incremented if the chain is updated. 
+ 
+ 
+ If a storage target is marked offline, it’s moved to the end of chain. 
+ 
+ 
+ If a storage service finds public state of any local storage target is lastsrv or offline, it exits immediately. The service may be isolated from the cluster manager by network partition error. 
+ 
+ 
+ Once the data recovery of a storage target in syncing state is completed, the storage service set the target’s local state to up-to-date in subsequent heartbeat messages sent to cluster manager. 
+ 
+ 
+ | Local State | Current Public State | Predecessor’s Public Stat"
+"After a storage target completes data recovery while in a syncing state, how does the storage service communicate this to the cluster manager?","Once the data recovery of a storage target in syncing state is completed, the storage service sets the target’s local state to 'up-to-date' in subsequent heartbeat messages sent to the cluster manager. This signals that the data recovery process is finished and the target is now synchronized."," waiting state |
+| offline     | service down or storage medium failure               | 
+ A storage target can change from one public state to another in response to the latest local state. The local state plays the role of a triggering event. The cluster manager periodically scans every chain and updates the public states of targets on the chain according to a state-transition table. 
+ 
+ 
+ The chain version is incremented if the chain is updated. 
+ 
+ 
+ If a storage target is marked offline, it’s moved to the end of chain. 
+ 
+ 
+ If a storage service finds public state of any local storage target is lastsrv or offline, it exits immediately. The service may be isolated from the cluster manager by network partition error. 
+ 
+ 
+ Once the data recovery of a storage target in syncing state is completed, the storage service set the target’s local state to up-to-date in subsequent heartbeat messages sent to cluster manager. 
+ 
+ 
+ | Local State | Current Public State | Predecessor’s Public Stat"
+What happens to the target's local state after the storage service completes its operation?,"After the storage service completes its operation, the target's local state is set to 'up-to-date'. This 'up-to-date' status is then communicated to the cluster manager in subsequent heartbeat messages.","mpleted, the storage service set the target’s local state to up-to-date in subsequent heartbeat messages sent to cluster manager. 
+ 
+ 
+ | Local State | Current Public State | Predecessor’s Public State | Next Public State |
+| :---------- | :------------------- | :------------------------- | :---------------- |
+| up-to-date  | serving              | (any)                      | serving           |
+|             | syncing              | (any)                      | serving           |
+|             | waiting              | (any)                      | waiting           |
+|             | lastsrv              | (any)                      | serving           |
+|             | offline              | (any)                      | waiting           |
+| online      | serving              | (any)                      | serving           |
+|             | syncing              | serving                    | syncing           |
+|             |                      | not serving                | wait"
+What is the next public state when the local state is 'up-to-date' and the current public state is 'serving'?,"When the local state is 'up-to-date' and the current public state is 'serving', the next public state is also 'serving', regardless of the predecessor's public state.","mpleted, the storage service set the target’s local state to up-to-date in subsequent heartbeat messages sent to cluster manager. 
+ 
+ 
+ | Local State | Current Public State | Predecessor’s Public State | Next Public State |
+| :---------- | :------------------- | :------------------------- | :---------------- |
+| up-to-date  | serving              | (any)                      | serving           |
+|             | syncing              | (any)                      | serving           |
+|             | waiting              | (any)                      | waiting           |
+|             | lastsrv              | (any)                      | serving           |
+|             | offline              | (any)                      | waiting           |
+| online      | serving              | (any)                      | serving           |
+|             | syncing              | serving                    | syncing           |
+|             |                      | not serving                | wait"
+"What is the next public state when the local state is 'online' and the current public state is 'syncing', and the predecessor's public state is 'serving'?","When the local state is 'online', the current public state is 'syncing', and the predecessor's public state is 'serving', the next public state is 'syncing'.","mpleted, the storage service set the target’s local state to up-to-date in subsequent heartbeat messages sent to cluster manager. 
+ 
+ 
+ | Local State | Current Public State | Predecessor’s Public State | Next Public State |
+| :---------- | :------------------- | :------------------------- | :---------------- |
+| up-to-date  | serving              | (any)                      | serving           |
+|             | syncing              | (any)                      | serving           |
+|             | waiting              | (any)                      | waiting           |
+|             | lastsrv              | (any)                      | serving           |
+|             | offline              | (any)                      | waiting           |
+| online      | serving              | (any)                      | serving           |
+|             | syncing              | serving                    | syncing           |
+|             |                      | not serving                | wait"
+"If the current state is 'offline' and the subsequent action is 'serving', what is the state of the predecessor?","If the current state is 'offline' and the subsequent action is 'serving', the text indicates that the state 'has no predecessor'.","                  | serving           |
+|             | syncing              | serving                    | syncing           |
+|             |                      | not serving                | waiting           |
+|             | waiting              | serving                    | syncing           |
+|             |                      | not serving                | waiting           |
+|             | lastsrv              | (any)                      | serving           |
+|             | offline              | (any)                      | waiting           |
+| offline     | serving              | has no predecessor         | lastsrv           |
+|             |                      | has predecessor            | offline           |
+|             | syncing              | (any)                      | offline           |
+|             | waiting              | (any)                      | offline           |
+|             | lastsrv              | (any)                      | lastsrv     "
+"If the current state is 'offline' and the subsequent action is 'syncing', what is the resulting state?","If the current state is 'offline' and the subsequent action is 'syncing', the resulting state is 'offline'.","                  | serving           |
+|             | syncing              | serving                    | syncing           |
+|             |                      | not serving                | waiting           |
+|             | waiting              | serving                    | syncing           |
+|             |                      | not serving                | waiting           |
+|             | lastsrv              | (any)                      | serving           |
+|             | offline              | (any)                      | waiting           |
+| offline     | serving              | has no predecessor         | lastsrv           |
+|             |                      | has predecessor            | offline           |
+|             | syncing              | (any)                      | offline           |
+|             | waiting              | (any)                      | offline           |
+|             | lastsrv              | (any)                      | lastsrv     "
+"When the current state is 'offline' and the action is 'lastsrv', what is the resulting state?","When the current state is 'offline' and the action is 'lastsrv', the resulting state is 'lastsrv'.","                  | serving           |
+|             | syncing              | serving                    | syncing           |
+|             |                      | not serving                | waiting           |
+|             | waiting              | serving                    | syncing           |
+|             |                      | not serving                | waiting           |
+|             | lastsrv              | (any)                      | serving           |
+|             | offline              | (any)                      | waiting           |
+| offline     | serving              | has no predecessor         | lastsrv           |
+|             |                      | has predecessor            | offline           |
+|             | syncing              | (any)                      | offline           |
+|             | waiting              | (any)                      | offline           |
+|             | lastsrv              | (any)                      | lastsrv     "
+What happens to storage targets when a storage service exits or a storage medium failure occurs?,"When a storage service exits (due to process crashes or restarts during upgrades) or a storage medium failure occurs, all related storage targets are marked as offline and moved to the end of chains by the cluster manager.","          | offline           |
+|             | waiting              | (any)                      | offline           |
+|             | lastsrv              | (any)                      | lastsrv           |
+|             | offline              | (any)                      | offline           | 
+ Data recovery 
+ When a storage service exits (e.g. process crashes or restarts during upgrade), or a storage medium failure occurs, all related storage targets will be marked as offline and moved to the end of chains by cluster manager. Once the service restarts, each target on the service enters into the recovery process independently. The entire recovery process overlaps with normal activity and minimizes any interruption. 
+ When a previously offline storage service starts: 
+ 
+ 
+ The service periodically pulls latest chain tables from cluster manager. But it does not send heartbeats until all its storage targets have been marked offline in the latest chain tables. This ensures all its target"
+What happens when a previously offline storage service starts?,"When a previously offline storage service starts, it periodically pulls the latest chain tables from the cluster manager. However, it does not send heartbeats until all its storage targets have been marked as offline in the latest chain tables.","          | offline           |
+|             | waiting              | (any)                      | offline           |
+|             | lastsrv              | (any)                      | lastsrv           |
+|             | offline              | (any)                      | offline           | 
+ Data recovery 
+ When a storage service exits (e.g. process crashes or restarts during upgrade), or a storage medium failure occurs, all related storage targets will be marked as offline and moved to the end of chains by cluster manager. Once the service restarts, each target on the service enters into the recovery process independently. The entire recovery process overlaps with normal activity and minimizes any interruption. 
+ When a previously offline storage service starts: 
+ 
+ 
+ The service periodically pulls latest chain tables from cluster manager. But it does not send heartbeats until all its storage targets have been marked offline in the latest chain tables. This ensures all its target"
+What is the recovery process like for targets on a restarted storage service?,"When a storage service restarts, each target on the service enters into the recovery process independently. The entire recovery process overlaps with normal activity and minimizes any interruption to ongoing operations.","          | offline           |
+|             | waiting              | (any)                      | offline           |
+|             | lastsrv              | (any)                      | lastsrv           |
+|             | offline              | (any)                      | offline           | 
+ Data recovery 
+ When a storage service exits (e.g. process crashes or restarts during upgrade), or a storage medium failure occurs, all related storage targets will be marked as offline and moved to the end of chains by cluster manager. Once the service restarts, each target on the service enters into the recovery process independently. The entire recovery process overlaps with normal activity and minimizes any interruption. 
+ When a previously offline storage service starts: 
+ 
+ 
+ The service periodically pulls latest chain tables from cluster manager. But it does not send heartbeats until all its storage targets have been marked offline in the latest chain tables. This ensures all its target"
+What condition must be met before a service sends heartbeats after periodically pulling chain tables from the cluster manager?,The service does not send heartbeats until all of its storage targets have been marked offline in the latest chain tables. This ensures that all of its targets would go through the data recovery process.,"iodically pulls latest chain tables from cluster manager. But it does not send heartbeats until all its storage targets have been marked offline in the latest chain tables. This ensures all its targets would go through the data recovery process. 
+ 
+ 
+ When a write request arrives during recovery, the request is always a full-chunk-replace write. The local committed version is updated and any existing pending version is abandoned. Since current service is the tail, an acknowledgment message is sent to the predecessor. The full state of the predecessor is copied to the returning service through a continuous stream of full-chunk-replace writes. 
+ 
+ 
+ Before the data recovery of a storage target starts, the predecessor sends a dump-chunkmeta request to the returning service. Then the service iterates the local chunk metadata store to collect the ids, chain versions and committed/pending version numbers of all chunks on the target, and replies the collected metadata to the predecessor. 
+ 
+ "
+"What type of write request is expected during the data recovery process, and how is the local committed version handled in response to it?","During recovery, the write request is always a full-chunk-replace write. In response, the local committed version is updated, and any existing pending version is abandoned.","iodically pulls latest chain tables from cluster manager. But it does not send heartbeats until all its storage targets have been marked offline in the latest chain tables. This ensures all its targets would go through the data recovery process. 
+ 
+ 
+ When a write request arrives during recovery, the request is always a full-chunk-replace write. The local committed version is updated and any existing pending version is abandoned. Since current service is the tail, an acknowledgment message is sent to the predecessor. The full state of the predecessor is copied to the returning service through a continuous stream of full-chunk-replace writes. 
+ 
+ 
+ Before the data recovery of a storage target starts, the predecessor sends a dump-chunkmeta request to the returning service. Then the service iterates the local chunk metadata store to collect the ids, chain versions and committed/pending version numbers of all chunks on the target, and replies the collected metadata to the predecessor. 
+ 
+ "
+"What information does the predecessor request from the returning service before the data recovery of a storage target starts, and how is this information provided?","Before the data recovery of a storage target starts, the predecessor sends a dump-chunkmeta request to the returning service. The service then iterates the local chunk metadata store to collect the ids, chain versions, and committed/pending version numbers of all chunks on the target, and replies the collected metadata to the predecessor.","iodically pulls latest chain tables from cluster manager. But it does not send heartbeats until all its storage targets have been marked offline in the latest chain tables. This ensures all its targets would go through the data recovery process. 
+ 
+ 
+ When a write request arrives during recovery, the request is always a full-chunk-replace write. The local committed version is updated and any existing pending version is abandoned. Since current service is the tail, an acknowledgment message is sent to the predecessor. The full state of the predecessor is copied to the returning service through a continuous stream of full-chunk-replace writes. 
+ 
+ 
+ Before the data recovery of a storage target starts, the predecessor sends a dump-chunkmeta request to the returning service. Then the service iterates the local chunk metadata store to collect the ids, chain versions and committed/pending version numbers of all chunks on the target, and replies the collected metadata to the predecessor. 
+ 
+ "
